@@ -92,15 +92,20 @@ beverage_sales$Site <- as.factor(beverage_sales$Site)
 ## 3. Exploratory Data Analysis
 
 
-Exploratory Data Analysis (EDA) is an important first step in data analysis, an essential precursor to formal statistical methods, uncovering underlying patterns and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, the following visualizations are suggested: box plots, a correlation plot, and time series plots. It is also recommended to observe the frequency of missing values in the dataset. 
+Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, box plots and time series plots are highly important and included in the main report. In the appendix, further visualization of missing value, histogram and correlation plots are included. 
 
 
-### 3.1 BoxPlots
+### 3.1 BoxPlot
 
-The following boxplots shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range (IQR), and the whiskers extending to the furthest points that are not considered outliers. Outliers are individual points beyond the whiskers. Note that due to the bimodality of sales, the boxplot incorrectly indicates many outliers. The interventions, labelled on the x-axis, include baseline (preint), discount & messaging (dismes), washout period (wash), the discount only (dis), second washout (wash2), follow up (follow), calorie content poster (cal), the exercise required to burn the calorie content (excer), and combination of the two (both). 
+A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. This following boxplot shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range (IQR), and the whiskers extending to the furthest points that are not considered outliers. Outliers are individual points beyond the whiskers. 
+
+Note that due to the bimodality of sales, the boxplot incorrectly indicates many outliers. The interventions, labelled on the x-axis, include baseline (preint), discount & messaging (dismes), washout period (wash), the discount only (dis), second washout (wash2), follow up (follow), calorie content poster (cal), the exercise required to burn the calorie content (excer), and combination of the two (both). 
 
 ```{r Boxplots, fig.cap="The boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Each intervention is colour-coded and shows the range of sales data with the central line representing the median sales.", echo=FALSE, fig.height=5, fig.width=8, fig.pos="p"}
 boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention")
+
+beverage_sales %>% filter(DofW %in% c(6,7)) %>% boxplots_by_category(responses = c("ZeroCal", "Sugary"), category = "Intervention")
+
 ```
 
 
@@ -108,9 +113,6 @@ boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), categor
   
 The following plot investigates the correlation structure between the day of the week (`DofW`), the number of zero-calorie drinks sold (`ZeroCal`), and the number of sugary drinks sold (`Sugary`). In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables. The `ZeroCal` and `Sugary` variables exhibit a very strong positive correlation with a correlation coefficient of 0.97. This suggests that sales of zero-calorie and sugary drinks are closely related; when sales of one type increase, sales of the other type tend to increase in a similar fashion. Conversely, both `ZeroCal` and `Sugary` drinks show a negative correlation with `DofW`, as indicated by the coefficient of -0.39. This negative correlation suggests a tendency for the sales of both drink types to decrease on certain days of the week.
 
-```{r correlation, echo=FALSE, fig.align='center', fig.height=3, fig.width=3, fig.pos="H"}
-plot_corr_plot(beverage_sales)
-```
 
 
 ### 3.3 Time Series Plot 
@@ -124,7 +126,7 @@ plot_sales_time_series(beverage_sales)
 
 ### 3.3 Missing Values and Data Imbalance
 
-The dataset has some missing data. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. Failing to address missing data may lead to a reduction of statistical power and biased results. It appears that the missing data are missing not at random (MNAR), meaning that the probability of any given observation being missing varies for unidentified reasons (e.g., hospital closures, public events). It is also important to note from the observations counts whether or not the data appear to be balanced since imbalanced data can hinder model accuracy. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, the 'follow', 'wash', and 'wash2' levels are imbalanced when compared to the other interventions (see figure in appendix).
+The dataset contains some missing values. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. Failing to address missing data may lead to a reduction of statistical power and biased results. It appears that the missing data are missing not at random (MNAR), meaning that the probability of any given observation being missing varies for unidentified reasons (e.g., hospital closures, public events). It is also important to note from the observations counts whether or not the data appear to be balanced since imbalanced data can hinder model accuracy. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, the 'follow', 'wash', and 'wash2' levels are imbalanced when compared to the other interventions (see figure A4 in appendix).
 
 
 For more visual exploration see the appendix.
@@ -217,6 +219,7 @@ Both exploratory and formal analyses are recommended for investigating the effec
 The following sub section contain some additional information and analysis results.
 
 
+
 ### Histogram Plots
 
 The following histogram plots show the frequency distribution of sales for Sugary (in purple), Zero-Calorie (ZeroCal, in teal), and Total (in yellow) beverages. The x-axis of each histogram represents the sales volume, while the y-axis indicates the count of observations within each sales range. The pattern in all histograms is similar:  most sales numbers cluster at the lower end of the scale, suggesting a higher frequency of days with fewer sales; however, the sales histograms exhibit a second weaker mode, indicating two common sales volumes across the observed period.
@@ -235,6 +238,14 @@ The following scatter plot depicts the relationship between zero-calorie and sug
 plot_beverage_sales_comparison(beverage_sales, "ZeroCal", "Sugary", "Site")
 ```
 
+### Correlation Plot 
+
+The following plot visualizes the correlation between numeric variables.
+
+
+```{r correlation, echo=FALSE, fig.align='center', fig.width=3.5}
+plot_corr_plot(beverage_sales)
+```
 
 ### Missing Values
 
