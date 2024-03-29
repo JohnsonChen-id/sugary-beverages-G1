@@ -46,12 +46,8 @@ source("../code/LMEM.R")
 Concerns around sugar consumption and its health implications have prompted many interventions to 
 change consumer behaviour cut down on sugary beverages. The current study investigates the 
 effectiveness of two types of intervention strategies to motivate and incentivize consumers to 
-choose zero-calorie beverages over sugary alternatives. In particular, the research question focuses
-on the impact of two strategies to inform consumers about calorie content through visual 
-presentations: posters highlighting either the calorie content or the physical activity required to 
-burn calories. Furthermore, the effectiveness of price discounts on behaviour is explored, both 
-independently and in conjunction with explanatory messaging. This study also seek to understand if 
-the effectiveness of those strategies varies across different sites.
+choose zero-calorie beverages over sugary alternatives. In particular, the research question focuses on the impact of two strategies to inform consumers about calorie content through visual 
+presentations: posters highlighting either the calorie content or the physical activity required to burn calories. Furthermore, the effectiveness of price discounts on behaviour is explored, both independently and in conjunction with explanatory messaging. This study also seek to understand if the effectiveness of those strategies varies across different sites.
 
 ## 2. Data Description and Summaries
 
@@ -74,6 +70,10 @@ beverage_sales$LogRatio <- with(beverage_sales, log(ZeroCal/Sugary))
 beverage_sales$DofW <- as.factor(beverage_sales$DofW)
 beverage_sales$Intervention <- as.factor(beverage_sales$Intervention)
 beverage_sales$Site <- as.factor(beverage_sales$Site)
+beverage_sales <- beverage_sales %>% mutate(Site = recode(Site, 
+                                                          chop = "A",
+                                                          HF = "B",
+                                                          NS = "C"))
 
 # head(beverage_sales)
 # dim(beverage_sales)
@@ -122,8 +122,9 @@ plot_sales_time_series(beverage_sales)
 
 ### 3.3 Missing Values and Data Imbalance
 
-The dataset contains some missing values. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. Failing to address missing data may lead to a reduction of statistical power and biased results. It appears that the missing data are missing not at random (MNAR), meaning that the probability of any given observation being missing varies for unidentified reasons (e.g., hospital closures, public events). It is also important to note from the observations counts whether or not the data appear to be balanced since imbalanced data can hinder model accuracy. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, the 'follow', 'wash', and 'wash2' levels are imbalanced when compared to the other interventions.
+The dataset contains some missing values. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. There are 9 days of unrecorded zero-calorie and sugary beverage sales, 7 of which represent the last week of the study at site B. Failing to address missing data may lead to a reduction of statistical power and biased results. It appears that the missing data are missing not at random (MNAR), meaning that the probability of any given observation being missing varies for unidentified reasons (e.g., hospital closures, public events). This supports the appropriateness in choice of model in the formal analysis. 
 
+It is also important to note whether of not the dataset reflects a roughly equal number of observations between the sites and interventions respectively. If one class in either the site or interventions are represented disproportionately, then models used may become biased towards the most frequently seen class. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, the 'follow', 'wash', and 'wash2' levels are imbalanced when compared to the other interventions.
 
 ## 4. Formal Analysis
 

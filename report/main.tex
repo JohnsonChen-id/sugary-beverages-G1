@@ -234,17 +234,23 @@ Imbalance}\label{missing-values-and-data-imbalance}}
 
 The dataset contains some missing values. It is important to identify
 what kind of missing data exists within a dataset to better understand
-how to handle missingness during formal analysis. Failing to address
-missing data may lead to a reduction of statistical power and biased
-results. It appears that the missing data are missing not at random
-(MNAR), meaning that the probability of any given observation being
-missing varies for unidentified reasons (e.g., hospital closures, public
-events). It is also important to note from the observations counts
-whether or not the data appear to be balanced since imbalanced data can
-hinder model accuracy. Balance between sites appears to be reasonable,
-where some imbalance is present between interventions. Namely, the
-`follow', `wash', and `wash2' levels are imbalanced when compared to the
-other interventions.
+how to handle missingness during formal analysis. There are 9 days of
+unrecorded zero-calorie and sugary beverage sales, 7 of which represent
+the last week of the study at site B. Failing to address missing data
+may lead to a reduction of statistical power and biased results. It
+appears that the missing data are missing not at random (MNAR), meaning
+that the probability of any given observation being missing varies for
+unidentified reasons (e.g., hospital closures, public events). This
+supports the appropriateness in choice of model in the formal analysis.
+
+It is also important to note whether of not the dataset reflects a
+roughly equal number of observations between the sites and interventions
+respectively. If one class in either the site or interventions are
+represented disproportionately, then models used may become biased
+towards the most frequently seen class. Balance between sites appears to
+be reasonable, where some imbalance is present between interventions.
+Namely, the `follow', `wash', and `wash2' levels are imbalanced when
+compared to the other interventions.
 
 \hypertarget{formal-analysis}{%
 \subsection{4. Formal Analysis}\label{formal-analysis}}
