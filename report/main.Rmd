@@ -105,11 +105,6 @@ beverage_sales %>% filter(DofW %in% c(6,7)) %>% boxplots_by_category(responses =
 ```
 
 
-### 3.2 Correlation Plot 
-  
-The following plot investigates the correlation structure between the day of the week (`DofW`), the number of zero-calorie drinks sold (`ZeroCal`), and the number of sugary drinks sold (`Sugary`). In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables. The `ZeroCal` and `Sugary` variables exhibit a very strong positive correlation with a correlation coefficient of 0.97. This suggests that sales of zero-calorie and sugary drinks are closely related; when sales of one type increase, sales of the other type tend to increase in a similar fashion. Conversely, both `ZeroCal` and `Sugary` drinks show a negative correlation with `DofW`, as indicated by the coefficient of -0.39. This negative correlation suggests a tendency for the sales of both drink types to decrease on certain days of the week.
-
-
 
 ### 3.3 Time Series Plot 
 
@@ -215,7 +210,7 @@ Both exploratory and formal analyses are recommended for investigating the effec
 
 ## Appendix A: Figures
    
-The following sub section contain some additional information and analysis results.
+The following sub section contains additional figures and their analysis results.
 
 
 
@@ -239,7 +234,7 @@ plot_beverage_sales_comparison(beverage_sales, "ZeroCal", "Sugary", "Site")
 
 ### Correlation Plot 
 
-The following plot visualizes the correlation between numeric variables.
+The following plot investigates the correlation structure between numeric variables within the dataset. In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables.
 
 
 ```{r correlation, echo=FALSE, fig.align='center', fig.width=3.5}
