@@ -56,16 +56,14 @@ The day of week, site and intervention covariates are each considered categorica
 
 ```{r data, include=FALSE}
 beverage_sales <- read.csv("../rawdata/june1data.csv") %>% 
-   select(Count, DofW, Site, Intervention, ZeroCal, Sugary, Total)
+   select(Count, DofW, Site, Intervention, ZeroCal, Sugary, Total) %>%
+  mutate(Site = recode(Site,chop = "A",HF = "B",NS = "C"))%>% 
+  mutate(Intervention = ifelse(Intervention == 'wash2', 'wash', Intervention))
 # Creating a new variable for the log-transformed ratio
 beverage_sales$LogRatio <- with(beverage_sales, log(ZeroCal/Sugary))
 beverage_sales$DofW <- as.factor(beverage_sales$DofW)
 beverage_sales$Intervention <- as.factor(beverage_sales$Intervention)
 beverage_sales$Site <- as.factor(beverage_sales$Site)
-beverage_sales <- beverage_sales %>% mutate(Site = recode(Site, 
-                                                          chop = "A",
-                                                          HF = "B",
-                                                          NS = "C"))
 
 # head(beverage_sales)
 # dim(beverage_sales)
@@ -81,6 +79,15 @@ beverage_sales <- beverage_sales %>% mutate(Site = recode(Site,
 
 
 Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns, relationships, and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, box plots and time series plots are highly important and included in the main report. The visualization in particular provide insight into the distribution of sugary and zero-calorie beverage sales, as well as their temporal trends. Additionally, Appendix A provides supplementary visualizations encompassing missing values, histograms and a correlation plot. Collectively, these exploratory techniques build a foundation and justifies the development of our formal analysis, aiming to explore the impact product labeling on beverage sales. 
+
+## Time Series Plot 
+
+Figure \@ref(fig:sales-time-series-plot) represents the sales time series of zero-calorie and sugary beverages across different sites. Each line represents the sales trajectory of one beverage type—green for zero-calorie and blue for sugary drinks. The x-axis represents time (in days), and the y-axis represents the sales volume. Dashed vertical lines indicate the start of different interventions, labelled as dismes (discount & messaging), dis (only discount), cal (calorie content poster), exer (exercise-based posters), and both. The interventions appear to influence sales, as suggested by changes in the lines' trajectories post-intervention. The plots are faceted by site, allowing for a comparative view of sales patterns across different locations.
+
+```{r sales-time-series-plot, fig.cap="This plot illustrates the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=4, fig.width=6, fig.pos="H"}
+plot_sales_time_series(beverage_sales)
+
+```
 
 
 ## Boxplot
@@ -101,22 +108,6 @@ boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), categor
 #boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekend")
 
 ```
-
-
-## Correlation Plot 
-  
-A correlation plot (Figure \@ref(fig:correlation)) investigates the correlation structure between the day of the week (`DofW`), the number of zero-calorie drinks sold (`ZeroCal`), and the number of sugary drinks sold (`Sugary`). In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables. The `ZeroCal` and `Sugary` variables exhibit a very strong positive correlation with a correlation coefficient of 0.97. This suggests that sales of zero-calorie and sugary drinks are closely related; when sales of one type increase, sales of the other type tend to increase in a similar fashion. Conversely, both `ZeroCal` and `Sugary` drinks show a negative correlation with `DofW`, as indicated by the coefficient of -0.39. This negative correlation suggests a tendency for the sales of both drink types to decrease on certain days of the week.
-
-
-
-## Time Series Plot 
-
-Figure \@ref(fig:sales-time-series-plot) represents the sales time series of zero-calorie and sugary beverages across different sites. Each line represents the sales trajectory of one beverage type—green for zero-calorie and blue for sugary drinks. The x-axis represents time (in days), and the y-axis represents the sales volume. Dashed vertical lines indicate the start of different interventions, labelled as dismes (discount & messaging), dis (only discount), cal (calorie content poster), exer (exercise-based posters), and both. The interventions appear to influence sales, as suggested by changes in the lines' trajectories post-intervention. The plots are faceted by site, allowing for a comparative view of sales patterns across different locations.
-
-```{r sales-time-series-plot, fig.cap="This plot illustrates the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=4, fig.width=6, fig.pos="H"}
-plot_sales_time_series(beverage_sales)
-```
-
 
 ## Missing Values and Data Imbalance
 
@@ -224,6 +215,8 @@ University of Virginia Library. (n.d.). Getting Started with Generalized Estimat
 # Appendix A
    
 
+The following sub section contains additional figures and their analysis results.
+
 ## Histogram Plots
 
 The following histogram plots show the frequency distribution of sales for Sugary (in purple), Zero-Calorie (ZeroCal, in teal), and Total (in yellow) beverages. The x-axis of each histogram represents the sales volume, while the y-axis indicates the count of observations within each sales range. The pattern in all histograms is similar:  most sales numbers cluster at the lower end of the scale, suggesting a higher frequency of days with fewer sales; however, the sales histograms exhibit a second weaker mode, indicating two common sales volumes across the observed period.
@@ -266,7 +259,7 @@ grid.arrange(p1, p2)
 
 ## Correlation Plot 
 
-The following plot visualizes the correlation between numeric variables.
+This correlation plot (Figure \@ref(fig:correlation)) investigates the correlation structure between numeric variables within the dataset. In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables.
 
 
 ```{r correlation, echo=FALSE, fig.align='center', fig.width=3.5}
