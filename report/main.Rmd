@@ -376,9 +376,9 @@ where $y_{ij}$ is the sales of beverage at site $i$ day $j$, $ \beta^0 + b_{ij}^
 
 
 ```{=latex}
-\textbf{Parham Pishrobat (71097927):} Introduction, Data, ITSA, Other EDA Plots, Formatting\\ \\ \\
-\textbf{Johnson Chen (85784080):}  \quad LMEM, Correlation, Appendix, Formatting\\ \\ \\
-\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, Conclusion, Formatting\\ \\ \\
+\textbf{Parham Pishrobat (71097927):} Introduction, data, ITSA, other EDA plots, formatting\\ \\ \\
+\textbf{Johnson Chen (85784080):}  \quad LMEM, correlation, appendix, formatting\\ \\ \\
+\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, conclusion, formatting, edits after peer review.\\ \\ \\
 ```
 
 
