@@ -64,16 +64,14 @@ The day of week, site and intervention covariates are each considered categorica
 
 ```{r data, include=FALSE}
 beverage_sales <- read.csv("../rawdata/june1data.csv") %>% 
-   select(Count, DofW, Site, Intervention, ZeroCal, Sugary, Total)
+   select(Count, DofW, Site, Intervention, ZeroCal, Sugary, Total) %>%
+  mutate(Site = recode(Site,chop = "A",HF = "B",NS = "C"))%>% 
+  mutate(Intervention = ifelse(Intervention == 'wash2', 'wash', Intervention))
 # Creating a new variable for the log-transformed ratio
 beverage_sales$LogRatio <- with(beverage_sales, log(ZeroCal/Sugary))
 beverage_sales$DofW <- as.factor(beverage_sales$DofW)
 beverage_sales$Intervention <- as.factor(beverage_sales$Intervention)
 beverage_sales$Site <- as.factor(beverage_sales$Site)
-beverage_sales <- beverage_sales %>% mutate(Site = recode(Site, 
-                                                          chop = "A",
-                                                          HF = "B",
-                                                          NS = "C"))
 
 # head(beverage_sales)
 # dim(beverage_sales)
@@ -90,8 +88,17 @@ beverage_sales <- beverage_sales %>% mutate(Site = recode(Site,
 
 Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns, relationships, and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, box plots and time series plots are highly important and included in the main report. The visualization in particular provide insight into the distribution of sugary and zero-calorie beverage sales, as well as their temporal trends. Additionally, Appendix A provides supplementary visualizations encompassing missing values, histograms and a correlation plot. Collectively, these exploratory techniques build a foundation and justifies the development of our formal analysis, aiming to explore the impact product labeling on beverage sales. 
 
+### 3.1 Time Series Plot 
 
-### 3.1 Boxplot
+The following stacked line plot represents the sales time series of zero-calorie and sugary beverages across different sites. Each line represents the sales trajectory of one beverage type—green for zero-calorie and blue for sugary drinks. The x-axis represents time (in days), and the y-axis represents the sales volume. Dashed vertical lines indicate the start of different interventions, labelled as dismes (discount & messaging), dis (only discount), cal (calorie content poster), exer (exercise-based posters), and both. The interventions appear to influence sales, as suggested by changes in the lines' trajectories post-intervention. The plots are faceted by site, allowing for a comparative view of sales patterns across different locations.
+
+```{r sales-time-series-plot, fig.cap="This plot illustrates the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=4, fig.width=6, fig.pos="H"}
+plot_sales_time_series(beverage_sales)
+
+```
+
+
+### 3.2 Boxplot
 
 A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. This following boxplot shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range (IQR), and the whiskers extending to the furthest points that are not considered outliers. Outliers are individual points beyond the whiskers. 
 
@@ -106,13 +113,6 @@ beverage_sales %>% filter(DofW %in% c(6,7)) %>% boxplots_by_category(responses =
 
 
 
-### 3.3 Time Series Plot 
-
-The following stacked line plot represents the sales time series of zero-calorie and sugary beverages across different sites. Each line represents the sales trajectory of one beverage type—green for zero-calorie and blue for sugary drinks. The x-axis represents time (in days), and the y-axis represents the sales volume. Dashed vertical lines indicate the start of different interventions, labelled as dismes (discount & messaging), dis (only discount), cal (calorie content poster), exer (exercise-based posters), and both. The interventions appear to influence sales, as suggested by changes in the lines' trajectories post-intervention. The plots are faceted by site, allowing for a comparative view of sales patterns across different locations.
-
-```{r sales-time-series-plot, fig.cap="This plot illustrates the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=4, fig.width=6, fig.pos="H"}
-plot_sales_time_series(beverage_sales)
-```
 
 
 ### 3.3 Missing Values and Data Imbalance

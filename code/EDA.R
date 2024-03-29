@@ -140,16 +140,19 @@ plot_beverage_sales_comparison <- function(df, x_var, y_var, color_var) {
 #'
 #' @param df Data frame containing the sales data.
 plot_sales_time_series <- function(df) {
-  interventions <- unique(df$Intervention)
-  intervention_starts <- sapply(interventions, function(x) which(df$Intervention == x)[1])
-  intervention_df <- data.frame(start = intervention_starts, label = interventions)
-  intervention_df$label <- c("", "dismes", "", "dis", "", "follow", "cal", "exer", "both")
+  rleA <- rle(as.character((df %>% filter(Site == "A"))$Intervention))
+  intervention_df <- data.frame(Site = c(rep("A",length(cumsum(rleA$lengths))),
+                                         rep("B",length(cumsum(rleA$lengths))),
+                                         rep("C",length(cumsum(rleA$lengths)))),
+                                start = rep(c(1, head(cumsum(rleA$lengths) + 1, -1)),3),end = rep(cumsum(rleA$lengths),3),Alabel = rleA$values,
+                                Blabel = rle(as.character((df %>% filter(Site =="B"))$Intervention))$values,Clabel = rle(as.character((df %>% filter(Site == "C"))$Intervention))$values)
+  intervention_df$label <- ifelse(intervention_df$Site == "A", intervention_df$Alabel,
+                                  ifelse(intervention_df$Site == "B", intervention_df$Blabel,
+                                         intervention_df$Clabel))
   
-  df$Site <- factor(df$Site, levels = unique(df$Site))
-  
-  p <- ggplot(df, aes(x = Count)) +
-    geom_line(aes(y = ZeroCal, color = "ZeroCal"), na.rm = TRUE) +
-    geom_line(aes(y = Sugary, color = "Sugary"), na.rm = TRUE) +
+  p <- ggplot(df) +
+    geom_line(aes(x = Count,y = ZeroCal, color = "ZeroCal"), na.rm = TRUE) +
+    geom_line(aes(x = Count,y = Sugary, color = "Sugary"), na.rm = TRUE) +
     scale_color_viridis(discrete = TRUE, begin = 0.2, end = 0.8) +
     geom_vline(data = intervention_df, aes(xintercept = start), linetype = "dashed") +
     geom_text(data = intervention_df, aes(x = start+ 10, y = 0, label = label), vjust = -5.5) +
@@ -157,7 +160,9 @@ plot_sales_time_series <- function(df) {
     theme_minimal() +
     labs(title = "Sales Over Time by Site", x = "Day", y = "Sales", color = "Beverage Type") +
     theme(legend.position = "top") +
-    scale_y_continuous(expand = expansion(mult = c(0.05, 0.25)))
+    scale_y_continuous(expand = expansion(mult = c(0.05, 0.25)))+
+    geom_rect(data = intervention_df, aes(xmin = start, xmax = end,ymin = -Inf,
+                                          ymax = Inf, fill = label), alpha = 0.2) 
   
   print(p)
 }
