@@ -1,6 +1,10 @@
 ---
 title: "Statistical Advice on the Effect of Interventions on Beverage Sales"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+author: |
+  | Parham Pishrobat (71097927), 
+  | Johnson Chen (85784080), 
+  | Sarah Masri (97415681)
 output: 
    pdf_document:
       latex_engine: xelatex
@@ -33,17 +37,9 @@ source("../code/GEE.R")
 source("../code/LMEM.R")
 ```
 
-**Contributions:**\linebreak
-
-
-```{=latex}
-\textbf{Parham Pishrobat (71097927):} Introduction, Data, ITSA, Other EDA Plots, Formatting\\ \\ \\
-\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, Conclusion, Formatting\\ \\ \\
-\textbf{Johnson Chen (85784080):}  \quad LMEM, Correlation, Appendix, Formatting\\ \\ \\
-```
-
-
 \pagebreak
+
+
 
 ## 1. Introduction
 
@@ -334,5 +330,16 @@ where $\beta$ contains fixed effects, $b_i$ contains random effects parameter fo
 $$y_{ij}  = \beta_0 + b_{ij}^0 + (\beta_1 + b_{ij}^1)Treatment + (\beta_2 + b_{ij}^2)Day of Week +(\beta_3 + b_{ij}^3)Duration +e_{ij}$$
 where $y_{ij}$ is the sales of beverage at site $i$ day $j$, $ \beta^0 + b_{ij}^0$ is the fixed and random terms for intercept, $(\beta_1 + b_{ij}^1)Treatment$ consists of the fixed and random terms for all four indicator variable for treatment, $(\beta_2 + b_{ij}^2)Day of Week$ consists of the fixed and random terms for each day of the week, $(\beta_3 + b_{ij}^3)Duration$ represents the fixed and random effect of slope for duration into a specific treatment.
 
+
+\pagebreak
+
+## Contributions
+
+
+```{=latex}
+\textbf{Parham Pishrobat (71097927):} Introduction, Data, ITSA, Other EDA Plots, Formatting\\ \\ \\
+\textbf{Johnson Chen (85784080):}  \quad LMEM, Correlation, Appendix, Formatting\\ \\ \\
+\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, Conclusion, Formatting\\ \\ \\
+```
 
 
