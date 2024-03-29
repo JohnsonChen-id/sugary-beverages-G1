@@ -173,10 +173,18 @@ In this dataset, the five intervention methods across sites could be transformed
 Both exploratory and formal analyses are recommended for investigating the effectiveness of intervention strategies to promote zero-calorie beverages over their sugary alternatives involves both exploratory and formal analyses. An exploratory data analysis will help identify underlying patterns in the data, such as correlation and missingness. The formal analysis is recommended to includes three models: interrupted time series analysis, generalized estimating equations, and the linear mixed-effects model. Each of these models is capable of handling time-series and longitudinal data. Results from these models can be tested and compared for security. These analyses will answer if the data may indicate an impact on beverage sales by various labeling and discount strategies. 
    
    
-   
+\pagebreak
 
 ## 6. References
+
+
+Columbia University Mailman School of Public Health. (n.d.). Repeated Measures Analysis. Columbia University Mailman School of Public Health. https://www.publichealth.columbia.edu/research/population-health-methods/repeated-measures-analysis
    
+UCLA Statistical Consulting Group. (n.d.). Introduction to Linear Mixed Models. Retrieved March 1, 2024, from https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/ 
+   
+University of Virginia Library. (n.d.). Getting Started with Generalized Estimating Equations. Retrieved March 1, 2024, from https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations 
+   
+### Other Resources:
 
 - [\underline{\textcolor{blue}{Interrupted Time Series Analysis}}](https://rpubs.com/mbounthavong/MEPS_tutorial_6_itsa)
 - [\underline{\textcolor{blue}{Getting Started with Generalized Estimating Equations}}](https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations#:~:text=Generalized%20estimating%20equations%2C%20or%20GEE,(i.e.%2C%20model%20coefficients).)
