@@ -150,15 +150,21 @@ observed over some control periods of the study.
 Analysis}\label{exploratory-data-analysis}}
 
 Exploratory Data Analysis (EDA) is an important first step in data
-analysis in uncovering underlying patterns and outliers in the data. It
-ensures the subsequent analysis is built on a solid understanding of the
-data, thereby enhancing the reliability of the findings. To explore the
-data of the study, box plots and time series plots are highly important
-and included in the main report. In appendix A, further visualizations
-of missing values, histograms and correlation plots are included.
+analysis in uncovering underlying patterns, relationships, and outliers
+in the data. It ensures the subsequent analysis is built on a solid
+understanding of the data, thereby enhancing the reliability of the
+findings. To explore the data of the study, box plots and time series
+plots are highly important and included in the main report. The
+visualization in particular provide insight into the distribution of
+sugary and zero-calorie beverage sales, as well as their temporal
+trends. Additionally, Appendix A provides supplementary visualizations
+encompassing missing values, histograms and a correlation plot.
+Collectively, these exploratory techniques build a foundation and
+justifies the development of our formal analysis, aiming to explore the
+impact product labeling on beverage sales.
 
-\hypertarget{box-plot}{%
-\subsubsection{3.1 Box Plot}\label{box-plot}}
+\hypertarget{boxplot}{%
+\subsubsection{3.1 Boxplot}\label{boxplot}}
 
 A boxplot is a method for graphically demonstrating the property of
 statistical distribution of numerical data. This following boxplot shows
@@ -228,19 +234,23 @@ Imbalance}\label{missing-values-and-data-imbalance}}
 
 The dataset contains some missing values. It is important to identify
 what kind of missing data exists within a dataset to better understand
-how to handle missingness during formal analysis. Failing to address
-missing data may lead to a reduction of statistical power and biased
-results. It appears that the missing data are missing not at random
-(MNAR), meaning that the probability of any given observation being
-missing varies for unidentified reasons (e.g., hospital closures, public
-events). It is also important to note from the observations counts
-whether or not the data appear to be balanced since imbalanced data can
-hinder model accuracy. Balance between sites appears to be reasonable,
-where some imbalance is present between interventions. Namely, the
-`follow', `wash', and `wash2' levels are imbalanced when compared to the
-other interventions.
+how to handle missingness during formal analysis. There are 9 days of
+unrecorded zero-calorie and sugary beverage sales, 7 of which represent
+the last week of the study at site B. Failing to address missing data
+may lead to a reduction of statistical power and biased results. It
+appears that the missing data are missing not at random (MNAR), meaning
+that the probability of any given observation being missing varies for
+unidentified reasons (e.g., hospital closures, public events). This
+supports the appropriateness in choice of model in the formal analysis.
 
-For more visual exploration, see the appendix.
+It is also important to note whether of not the dataset reflects a
+roughly equal number of observations between the sites and interventions
+respectively. If one class in either the site or interventions are
+represented disproportionately, then models used may become biased
+towards the most frequently seen class. Balance between sites appears to
+be reasonable, where some imbalance is present between interventions.
+Namely, the `follow', `wash', and `wash2' levels are imbalanced when
+compared to the other interventions.
 
 \hypertarget{formal-analysis}{%
 \subsection{4. Formal Analysis}\label{formal-analysis}}
@@ -381,8 +391,25 @@ tested and compared for security. These analyses will answer if the data
 may indicate an impact on beverage sales by various labeling and
 discount strategies.
 
+\pagebreak
+
 \hypertarget{references}{%
 \subsection{6. References}\label{references}}
+
+Columbia University Mailman School of Public Health. (n.d.). Repeated
+Measures Analysis. Columbia University Mailman School of Public Health.
+\url{https://www.publichealth.columbia.edu/research/population-health-methods/repeated-measures-analysis}
+
+UCLA Statistical Consulting Group. (n.d.). Introduction to Linear Mixed
+Models. Retrieved March 1, 2024, from
+\url{https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/}
+
+University of Virginia Library. (n.d.). Getting Started with Generalized
+Estimating Equations. Retrieved March 1, 2024, from
+\url{https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations}
+
+\hypertarget{other-resources}{%
+\subsubsection{Other Resources:}\label{other-resources}}
 
 \begin{itemize}
 \tightlist
