@@ -82,7 +82,7 @@ Exploratory Data Analysis (EDA) is an important first step in data analysis in u
 
 ## Time Series Plot 
 
-Figure \@ref(fig:sales-time-series-plot) represents the sales time series of zero-calorie and sugary beverages across different sites. Each line represents the sales trajectory of one beverage type—green for zero-calorie and blue for sugary drinks. The x-axis represents time (in days), and the y-axis represents the sales volume. Dashed vertical lines indicate the start of different interventions, labelled as dismes (discount & messaging), dis (only discount), cal (calorie content poster), exer (exercise-based posters), and both. The interventions appear to influence sales, as suggested by changes in the lines' trajectories post-intervention. The plots are faceted by site, allowing for a comparative view of sales patterns across different locations.
+Figure \@ref(fig:sales-time-series-plot) represents the sales time series of zero-calorie and sugary beverages across different sites, colored by the Intervention. Both sugary drink and zero calorie drink sales trend is different across different interventions, indicating that different interventions does have different impact on the sales. The sales trend is different across sites, and the effect of intervention appears to be different across sites as well. 
 
 ```{r sales-time-series-plot, fig.cap="This plot illustrates the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=4, fig.width=6, fig.pos="H"}
 plot_sales_time_series(beverage_sales)
