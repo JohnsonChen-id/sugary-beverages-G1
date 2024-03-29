@@ -88,10 +88,10 @@ beverage_sales$Site <- as.factor(beverage_sales$Site)
 ## 3. Exploratory Data Analysis
 
 
-Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, box plots and time series plots are highly important and included in the main report. In appendix A, further visualizations of missing values, histograms and correlation plots are included. 
+Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, box plots and time series plots are highly important and included in the main report. Appendix A offers further visualizations of missing values, histograms and correlation plots are included. 
 
 
-### 3.1 Box Plot
+### 3.1 Boxplot
 
 A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. This following boxplot shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range (IQR), and the whiskers extending to the furthest points that are not considered outliers. Outliers are individual points beyond the whiskers. 
 
@@ -124,7 +124,6 @@ plot_sales_time_series(beverage_sales)
 
 The dataset contains some missing values. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. Failing to address missing data may lead to a reduction of statistical power and biased results. It appears that the missing data are missing not at random (MNAR), meaning that the probability of any given observation being missing varies for unidentified reasons (e.g., hospital closures, public events). It is also important to note from the observations counts whether or not the data appear to be balanced since imbalanced data can hinder model accuracy. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, the 'follow', 'wash', and 'wash2' levels are imbalanced when compared to the other interventions.
 
-For more visual exploration, see the appendix.
 
 ## 4. Formal Analysis
 
