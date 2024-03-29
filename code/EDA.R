@@ -48,8 +48,23 @@ plot_histograms <- function(df, var_names) {
 #' @param df Data frame containing the data.
 #' @param responses the variables to be plotted as response in boxplots
 #' @param category Name of the categorical variable.
-boxplots_by_category <- function(df, responses, category) {
+#' @param days String representing what days are reflected in the plot.
+#'             One of "all", "weekdays", "weekend".
+boxplots_by_category <- function(df, responses, category, days, legend=TRUE) {
   numeric_vars <- select_if(df, is.numeric) %>% names()
+  
+  title <- paste("Boxplot of Responses by", category)
+  legend.position <- "bottom"
+  
+  if(!legend) {legend.position <- "none"}
+  
+  if(days == "weekdays") {
+    title = paste(title, "on Weekdays")
+    df <- df %>% filter(DofW %in% 1:5)
+  } else if(days == "weekend") {
+    title = title = paste(title, "on the Weekend")
+    df <- df %>% filter(DofW %in% c(6, 7))
+  }
   
   if (!all(responses %in% numeric_vars)) {
     stop("All variables in 'responses' must be numeric.")
@@ -67,8 +82,8 @@ boxplots_by_category <- function(df, responses, category) {
     scale_fill_viridis(discrete = TRUE) +
     theme_minimal() +
     facet_wrap(~Response, scales = "free_y", nrow = length(responses)) + 
-    theme(legend.position = "bottom") + 
-    labs(title = paste("Boxplot of responses by", category))
+    theme(legend.position = legend.position) + 
+    labs(title = title)
   
   print(p)
 }
