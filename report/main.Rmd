@@ -119,7 +119,7 @@ It is also important to note whether of not the dataset reflects a roughly equal
 
 This study employs Interrupted Time Series Analysis (ITSA) with Linear Mixed Models (LMMs) to assess the impact of labelling interventions on beverage selection. ITSA is a statistical technique to characterize the temporal changes before and after interventions. This approach is especially pertinent to the current analysis as the study employs an interrupted time-series multi-site quasi-experimental design. Although ITSA can be carried out using a variety of linear models, LMMs are preferred to allow for the inclusion a random effect to accommodate for variability across collection sites. LMMs manage complex data, handle missing values, and capture both the fixed effects of interventions and the random effect of variability across sites. The logarithm of the ratio between zero-calorie and sugary beverage sales is considered as outcome of interest because it symmetrically quantifies relative preference shifts, where a higher log ratio indicates a preference for healthier options and vice versa. Correlation structure is defined based on the temporal spacing between observations, reflecting the notion that as time between sales data points increases, their correlation decreases in a manner that may not follow a simple pattern.
 
-Upon initial analysis, which focused solely on the direct before-and-after impacts of interventions, the study did not identify any statistically significant intervention effects. This outcome highlighted the the inadequacy of the method in capturing the dynamic and evolving nature of consumer responses over time. Subsequently, the analysis was refined to incorporate interactions between interventions and time, providing a richer understanding of how consumer preferences for beverages evolve in response to interventions. This nuanced approach revealed that exercise-focused messaging, in particular, had a significant and increasingly positive influence on consumer preferences towards healthier beverage options over time. Furthermore, while discount strategies initially appeared effective, their impacts did not sustain over time. Moreover, the analysis pointed to the significance of the day of the week, with consumer behaviour exhibiting notable shifts during weekends, suggesting either variations in beverage preferences between weekdays and weekends or change in the population during weekends.
+Upon initial analysis, which focuses solely on the direct before-and-after impacts of interventions, the study does not identify any statistically significant intervention effects. This outcome highlights the inadequacy of the method in capturing the dynamic and evolving nature of consumer responses over time. Subsequently, the analysis is refined to incorporate interactions between interventions and time, providing a richer understanding of how consumer preferences for beverages evolve in response to interventions. This nuanced approach reveals that exercise-focused messaging, in particular, has a significant and increasingly positive influence on consumer preferences towards healthier beverage options over time. Furthermore, while discount strategies initially appear effective, their impacts do not sustain over time. Moreover, the analysis points to the significance of the day of the week, with consumer behaviour exhibiting notable shifts during weekends, suggesting either variations in beverage preferences between weekdays and weekends or change in the population during weekends.
 
 These insights draw attention to the challenges of influencing dietary choices and the variable success rates of different intervention strategies. Specifically, the effectiveness of visually linking calorie consumption with physical activity emerged as a significant factor in promoting zero-calorie beverage choices. This variation in intervention effectiveness, coupled with the importance of intervention timing demonstrate the strategic value of timing in intervention planning. While the methodology employed provides valuable perspectives on intervention impacts, it operates under certain assumptions, such as linear temporal changes and uniform intervention effects across sites, which may simplify the complex dynamics of actual consumer behaviour. This complexity points to the challenges involved in designing universally effective health promotion interventions, underscoring the need for targeted, contextually aware strategies to encourage healthier consumer choices effectively.
 
@@ -268,8 +268,6 @@ grid.arrange(miss_plot1, miss_plot2, ncol=2)
 
 
 
-\pagebreak
-
 
 # Appendix B
 
@@ -329,7 +327,7 @@ Lastly, the model can be augmented with covariates to control for other factors 
 ```{=latex}
 \textbf{Parham Pishrobat (71097927):} Introduction, data, ITSA, other EDA plots, formatting\\ \\ \\
 \textbf{Johnson Chen (85784080):}  \quad LMEM, correlation, appendix, formatting\\ \\ \\
-\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, conclusion, formatting, edits after peer review.\\ \\ \\
+\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, conclusion, formatting, edits after peer review, proofread.\\ \\ \\
 ```
 
 
