@@ -159,8 +159,10 @@ plot_sales_time_series <- function(df) {
   intervention_df <- data.frame(Site = c(rep("A",length(cumsum(rleA$lengths))),
                                          rep("B",length(cumsum(rleA$lengths))),
                                          rep("C",length(cumsum(rleA$lengths)))),
-                                start = rep(c(1, head(cumsum(rleA$lengths) + 1, -1)),3),end = rep(cumsum(rleA$lengths),3),Alabel = rleA$values,
-                                Blabel = rle(as.character((df %>% filter(Site =="B"))$Intervention))$values,Clabel = rle(as.character((df %>% filter(Site == "C"))$Intervention))$values)
+                                start = rep(c(1, head(cumsum(rleA$lengths) + 1, -1)),3),
+                                end = rep(cumsum(rleA$lengths),3),Alabel = rleA$values,
+                                Blabel = rle(as.character((df %>% filter(Site =="B"))$Intervention))$values,
+                                Clabel = rle(as.character((df %>% filter(Site == "C"))$Intervention))$values)
   intervention_df$label <- ifelse(intervention_df$Site == "A", intervention_df$Alabel,
                                   ifelse(intervention_df$Site == "B", intervention_df$Blabel,
                                          intervention_df$Clabel))
