@@ -48,23 +48,8 @@ plot_histograms <- function(df, var_names) {
 #' @param df Data frame containing the data.
 #' @param responses the variables to be plotted as response in boxplots
 #' @param category Name of the categorical variable.
-#' @param days String representing what days are reflected in the plot.
-#'             One of "all", "weekdays", "weekend".
-boxplots_by_category <- function(df, responses, category, days, legend=TRUE) {
+boxplots_by_category <- function(df, responses, category) {
   numeric_vars <- select_if(df, is.numeric) %>% names()
-  
-  title <- paste("Boxplot of Responses by", category)
-  legend.position <- "bottom"
-  
-  if(!legend) {legend.position <- "none"}
-  
-  if(days == "weekdays") {
-    title = paste(title, "on Weekdays")
-    df <- df %>% filter(DofW %in% 1:5)
-  } else if(days == "weekend") {
-    title = title = paste(title, "on the Weekend")
-    df <- df %>% filter(DofW %in% c(6, 7))
-  }
   
   if (!all(responses %in% numeric_vars)) {
     stop("All variables in 'responses' must be numeric.")
@@ -82,8 +67,8 @@ boxplots_by_category <- function(df, responses, category, days, legend=TRUE) {
     scale_fill_viridis(discrete = TRUE) +
     theme_minimal() +
     facet_wrap(~Response, scales = "free_y", nrow = length(responses)) + 
-    theme(legend.position = legend.position) + 
-    labs(title = title)
+    theme(legend.position = "bottom") + 
+    labs(title = paste("Boxplot of responses by", category))
   
   print(p)
 }
@@ -155,21 +140,16 @@ plot_beverage_sales_comparison <- function(df, x_var, y_var, color_var) {
 #'
 #' @param df Data frame containing the sales data.
 plot_sales_time_series <- function(df) {
-  rleA <- rle(as.character((df %>% filter(Site == "A"))$Intervention))
-  intervention_df <- data.frame(Site = c(rep("A",length(cumsum(rleA$lengths))),
-                                         rep("B",length(cumsum(rleA$lengths))),
-                                         rep("C",length(cumsum(rleA$lengths)))),
-                                start = rep(c(1, head(cumsum(rleA$lengths) + 1, -1)),3),
-                                end = rep(cumsum(rleA$lengths),3),Alabel = rleA$values,
-                                Blabel = rle(as.character((df %>% filter(Site =="B"))$Intervention))$values,
-                                Clabel = rle(as.character((df %>% filter(Site == "C"))$Intervention))$values)
-  intervention_df$label <- ifelse(intervention_df$Site == "A", intervention_df$Alabel,
-                                  ifelse(intervention_df$Site == "B", intervention_df$Blabel,
-                                         intervention_df$Clabel))
+  interventions <- unique(df$Intervention)
+  intervention_starts <- sapply(interventions, function(x) which(df$Intervention == x)[1])
+  intervention_df <- data.frame(start = intervention_starts, label = interventions)
+  intervention_df$label <- c("", "dismes", "", "dis", "", "follow", "cal", "exer", "both")
   
-  p <- ggplot(df) +
-    geom_line(aes(x = Count,y = ZeroCal, color = "ZeroCal"), na.rm = TRUE) +
-    geom_line(aes(x = Count,y = Sugary, color = "Sugary"), na.rm = TRUE) +
+  df$Site <- factor(df$Site, levels = unique(df$Site))
+  
+  p <- ggplot(df, aes(x = Count)) +
+    geom_line(aes(y = ZeroCal, color = "ZeroCal"), na.rm = TRUE) +
+    geom_line(aes(y = Sugary, color = "Sugary"), na.rm = TRUE) +
     scale_color_viridis(discrete = TRUE, begin = 0.2, end = 0.8) +
     geom_vline(data = intervention_df, aes(xintercept = start), linetype = "dashed") +
     geom_text(data = intervention_df, aes(x = start+ 10, y = 0, label = label), vjust = -5.5) +
@@ -177,9 +157,7 @@ plot_sales_time_series <- function(df) {
     theme_minimal() +
     labs(title = "Sales Over Time by Site", x = "Day", y = "Sales", color = "Beverage Type") +
     theme(legend.position = "top") +
-    scale_y_continuous(expand = expansion(mult = c(0.05, 0.25)))+
-    geom_rect(data = intervention_df, aes(xmin = start, xmax = end,ymin = -Inf,
-                                          ymax = Inf, fill = label), alpha = 0.2) 
+    scale_y_continuous(expand = expansion(mult = c(0.05, 0.25)))
   
   print(p)
 }
@@ -215,9 +193,7 @@ plot_missing_data <- function(df, group_by_site= TRUE, group_by_intervention = T
 plot_corr_plot <- function(df, index = TRUE) {
   numeric_vars <- select_if(df, is.numeric) %>% names()
   if(index){
-    par(xpd = TRUE)
-    corrplot.mixed(cor(df[select_if(beverage_sales, is.numeric) %>% names()][-1], use = "complete.obs"), 
-                   order = 'AOE',addCoef.col = 1,number.cex = 0.7, tl.cex = 0.7,mar = c(1, 1, 1, 1))
+    corrplot.mixed(cor(df[select_if(beverage_sales, is.numeric) %>% names()][-1], use = "complete.obs"), order = 'AOE')
   } else {
     corrplot.mixed(cor(df[select_if(beverage_sales, is.numeric) %>% names()], use = "complete.obs"), order = 'AOE')
   }
