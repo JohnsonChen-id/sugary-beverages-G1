@@ -271,8 +271,8 @@ Lastly, the model can be augmented with covariates to control for other factors 
 
 ```{=latex}
 \textbf{Parham Pishrobat (71097927):} Introduction, data, ITSA, other EDA plots, formatting\\ \\ \\
-\textbf{Johnson Chen (85784080):}  \quad LMEM, correlation, appendix, formatting\\ \\ \\
-\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, conclusion, formatting, edits after peer review, proofread.\\ \\ \\
+\textbf{Johnson Chen (85784080):}  \quad LMEM, Correlation, appendix, formatting, edits after peer review, proofread.\\ \\ \\
+\textbf{Sarah Masri (97415681):} \quad GEE, Missing Values, conclusion, formatting, edits after peer review, proofread.\\ \\ \\
 ```
 
 
