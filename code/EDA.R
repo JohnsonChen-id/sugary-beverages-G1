@@ -215,7 +215,9 @@ plot_missing_data <- function(df, group_by_site= TRUE, group_by_intervention = T
 plot_corr_plot <- function(df, index = TRUE) {
   numeric_vars <- select_if(df, is.numeric) %>% names()
   if(index){
-    corrplot.mixed(cor(df[select_if(beverage_sales, is.numeric) %>% names()][-1], use = "complete.obs"), order = 'AOE')
+    par(xpd = TRUE)
+    corrplot.mixed(cor(df[select_if(beverage_sales, is.numeric) %>% names()][-1], use = "complete.obs"), 
+                   order = 'AOE',addCoef.col = 1,number.cex = 0.7, tl.cex = 0.7,mar = c(1, 1, 1, 1))
   } else {
     corrplot.mixed(cor(df[select_if(beverage_sales, is.numeric) %>% names()], use = "complete.obs"), order = 'AOE')
   }
