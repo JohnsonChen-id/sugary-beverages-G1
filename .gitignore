@@ -26,8 +26,6 @@ vignettes/*.pdf
 *.knit.md
 # R Environment Variables
 .Renviron
-report/*.tex
-report/*main_files
-report/.DS_Store
+/report/main.tex
+/report/main_files
 .DS_Store
-report/.DS_Store
