@@ -125,15 +125,13 @@ These insights draw attention to the challenges of influencing dietary choices a
 
 
 ```{r Model, warning=FALSE, include=FALSE}
-# Assuming your dataframe is named `beverage_sales`
-# and it includes a time variable `time` representing the measurement occasions
 library(nlme)
 beverage_sales_complete <- na.omit(beverage_sales)
 # Recode DofW to two levels: Weekday and Weekend
 beverage_sales_complete$DofW <- factor(ifelse(beverage_sales_complete$DofW %in% c(1, 2, 3, 4), 
                                               'Weekday', 
                                               'Weekend'))
-
+# Recode Interventions to mark all no interventiopn periods as "noint"
 levels(beverage_sales_complete$Intervention)[levels(beverage_sales_complete$Intervention) %in% 
                                                c("preint", "follow", "wash", "wash2")] <- "noint"
 
@@ -320,35 +318,7 @@ Here, $\beta_{4kl}$ captures the combined effect of interventions $k$ and $l$ wh
 
 Lastly, the model can be augmented with covariates to control for other factors that may influence sales, such as seasonal effects or marketing campaigns. These covariates can be time-varying and should be included in the model if they are thought to confound the relationship between the interventions and sales.
 
-## GEE Model
 
-Let $\mathbf{Y_i}$ be the outcome variable for beverage $i$ (zero-calorie or sugared) sales.
-
-Let $g(\cdot)$ be the log link function (Poisson or Negative Binomial). Then, for design matrix $\mathbf{X}$ including all revenant predictors, the model can be written more explicitly as
-
-$$
-g(\mathbb{E}[Y_i]) = \beta_{0i} + \beta_{1i} (\text{Discount}) + \beta_{2i} (\text{Discount + Messaging}) + \beta_{3i} (\text{Calorie Messaging}) 
-$$
-
-$$
-+ \beta_{4i} (\text{Exercise Messaging}) + \beta_{5i} (\text{Both Calorie Messaging}) + \beta_{6i} (\text{site B}) + \beta_{7i} (\text{site C})
-$$
-
-$$
-+ \beta_{8i} (\text{Day of Week})+ \beta_{9i} (\text{Total sales})
-$$
-
-Then $\beta_{0i}$ is the intercept. (Discount) and (Discount + Messaging) are each dummy variables to represent the discount intervention without messaging, and discount with messaging respectively. (Site B) and (Site C) are also dummy variables to indicate the site, with the baseline being site A.
-
-
-
-## LME model
-
-Let $y_i$ be the vector of measurements of response for site $i$, then a Linear Mixed Effect model is written as 
-$$y_i = X_i\beta + Z_i b_i + e_i$$ 
-where $\beta$ contains fixed effects, $b_i$ contains random effects parameter for site $i$. In this case, the expanded general parameters would be 
-$$y_{ij}  = \beta_0 + b_{ij}^0 + (\beta_1 + b_{ij}^1)Treatment + (\beta_2 + b_{ij}^2)Day of Week +(\beta_3 + b_{ij}^3)Duration +e_{ij}$$
-where $y_{ij}$ is the sales of beverage at site $i$ day $j$, $ \beta^0 + b_{ij}^0$ is the fixed and random terms for intercept, $(\beta_1 + b_{ij}^1)Treatment$ consists of the fixed and random terms for all four indicator variable for treatment, $(\beta_2 + b_{ij}^2)Day of Week$ consists of the fixed and random terms for each day of the week, $(\beta_3 + b_{ij}^3)Duration$ represents the fixed and random effect of slope for duration into a specific treatment.
 
 
 \pagebreak
