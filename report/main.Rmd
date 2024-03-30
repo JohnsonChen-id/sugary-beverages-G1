@@ -140,9 +140,6 @@ summary(model)
 In conclusion, our analysis demonstrates the value of integrating ITSA with LMM for evaluating public health interventions in shifting consumer behaviour. While our findings highlight the potential of certain interventions to positively influence consumer behaviour, they also point to the importance of considering temporal patterns in the design and implementation of health promotion strategies. The refined analysis, which incorporates interactions between interventions and time, reveal the progressive influence of exercise-related messaging of the calorie content on shifting consumer preferences towards zero-calorie beverages. Furthermore, the discounting strategies show a significant impact after commencing the intervention but fail to sustain the impact. Variations in preference between weekdays and weekends further highlighted the importance of timing and pointing to different target populations. 
 
 \pagebreak
-
-# (APPENDIX) Appendix {-} 
-
 # References
 
 
@@ -151,6 +148,10 @@ Columbia University Mailman School of Public Health. (n.d.). Repeated Measures A
 UCLA Statistical Consulting Group. (n.d.). Introduction to Linear Mixed Models. Retrieved March 1, 2024, from https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/ 
    
 University of Virginia Library. (n.d.). Getting Started with Generalized Estimating Equations. Retrieved March 1, 2024, from https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations 
+
+# (APPENDIX) Appendix {-} 
+
+
 
 # Appendix A
    
@@ -198,6 +199,7 @@ plot_beverage_sales_comparison(beverage_sales, "ZeroCal", "Sugary", "Site")
 
 
 ```{r correlation, fig.cap= "Correlation plot displaying the correlation between numeric variables", fig.pos="H", fig.label='fig:appendix-correlation',echo=FALSE, message=FALSE, warning=FALSE, fig.width=3}
+# par(mar = c(0,0,0,0), oma = c(0, 0, 0, 0))
 # plot_corr_plot(beverage_sales)
 ```
 
@@ -265,7 +267,7 @@ Here, $\beta_{4kl}$ captures the combined effect of interventions $k$ and $l$ wh
 
 Lastly, the model can be augmented with covariates to control for other factors that may influence sales, such as seasonal effects or marketing campaigns. These covariates can be time-varying and should be included in the model if they are thought to confound the relationship between the interventions and sales.
 
-
+\pagebreak 
 # Contributions
 
 

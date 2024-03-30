@@ -1,18 +1,9 @@
 # HW 2 -- Sugary beverages
 
+author: "Parham Pishrobat (71097927), Johnson Chen (85784080), Sarah Masri (97415681)"
 
+## Version 2 
 
-## Version 2 (second deadline)
-
-The goal of this part is two fold (1) incorporate the suggestions from Me, the
-peer-reviews, and Estella into your 3 page Summary, (2) complete the analysis
-and add a Statistical Appendix.
-
-The Appendix may be at most 5 pages. Choose judiciously. Size figures reasonably.
-
-An additional, final page, should be used to list the names of group members, 
-with a concise description of the contributions each group member makes to the
-assignment.
 
 ### Expectations
 
