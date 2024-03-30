@@ -136,9 +136,9 @@ University of Virginia Library. (n.d.). Getting Started with Generalized Estimat
 
 The following sub section contains additional figures and their analysis results.
 
-## Boxplots
+## Boxplot
 
-This boxplot shows the sales distribution data from weekdays and weekends across sites. (Figure \@ref(fig:appendix-boxplots)).
+The Figure \@ref(fig:appendix-boxplots) hows the sales distribution data from weekdays and weekends across sites.
 
 ```{r, echo=FALSE, fig.show='hide'}
 
@@ -157,7 +157,7 @@ grid.arrange(p1, p2)
 
 ## Histogram Plots
 
-The following histogram plots show the frequency distribution of sales for Sugary (in purple), Zero-Calorie (ZeroCal, in teal), and Total (in yellow) beverages. The x-axis of each histogram represents the sales volume, while the y-axis indicates the count of observations within each sales range. The pattern in all histograms is similar:  most sales numbers cluster at the lower end of the scale, suggesting a higher frequency of days with fewer sales; however, the sales histograms exhibit a second weaker mode, indicating two common sales volumes across the observed period.
+The Figure \@ref(fig:Plot-Histograms) (histogram plots) show the frequency distribution of sales for Sugary (in purple), Zero-Calorie (ZeroCal, in teal), and Total (in yellow) beverages. The x-axis of each histogram represents the sales volume, while the y-axis indicates the count of observations within each sales range. The pattern in all histograms is similar:  most sales numbers cluster at the lower end of the scale, suggesting a higher frequency of days with fewer sales; however, the sales histograms exhibit a second weaker mode, indicating two common sales volumes across the observed period.
 
 ```{r Plot-Histograms, fig.cap = "Sales Distribution Analysis: Histograms displaying the frequency of sales for Sugary (purple), Zero-Calorie (teal), and Total combined (yellow) beverages. Each histogram reveals the distribution pattern of sales volumes, highlighting the bimodal nature of sales across all types.", fig.label='fig:hist-plot', echo=FALSE, fig.height=4, fig.width=5, message=FALSE, warning=FALSE}
 plot_histograms(beverage_sales, var_names = c("Sugary", "ZeroCal", "Total"))
@@ -166,7 +166,7 @@ plot_histograms(beverage_sales, var_names = c("Sugary", "ZeroCal", "Total"))
 
 ## Scatter Plot
 
-The following scatter plot depicts the relationship between zero-calorie and sugary beverage sales at three different hospital sites: A or chop (purple), B or HF (blue), and C or NS (yellow). The x-axis represents zero-calorie beverage sales, and the y-axis represents sugary beverage sales. A dashed line, suggesting the line of equality, indicates where the sales for both types would be equal. Points above the line indicate higher sugary beverage sales when compared to zero-calorie ones, and points below the line indicate the opposite. The clustering of points towards the upper right suggests that for higher sales volumes, sugary beverages tend to sell as much as or more than zero-calorie options, particularly in site A (chop). The plot reveals variability in the sales patterns across sites, with the HF site having a more direct correlation between ZeroCal and Sugary sales when compared to other sites.
+The figure \@ref(fig:Sales-Scatterplot) (scatter plot) depicts the relationship between zero-calorie and sugary beverage sales at three different hospital sites: A or chop (purple), B or HF (blue), and C or NS (yellow). The x-axis represents zero-calorie beverage sales, and the y-axis represents sugary beverage sales. A dashed line, suggesting the line of equality, indicates where the sales for both types would be equal. Points above the line indicate higher sugary beverage sales when compared to zero-calorie ones, and points below the line indicate the opposite. The clustering of points towards the upper right suggests that for higher sales volumes, sugary beverages tend to sell as much as or more than zero-calorie options, particularly in site A (chop). The plot reveals variability in the sales patterns across sites, with the HF site having a more direct correlation between ZeroCal and Sugary sales when compared to other sites.
 
 
 ```{r Sales-Scatterplot, fig.cap="This scatter plot contrasts zero-calorie and sugary beverage sales, colour-coded by the site. Each point represents the paired sales data for a given day, with the site-specific colour coding (chop in purple, HF in blue, NS in yellow) illustrating the sales trend at each location. The dashed diagonal line marks the parity where the sales of both beverage types are equal. Deviations from this line highlight the predominance of one beverage type over the other in daily sales.", echo=FALSE, fig.height=3, fig.width=6, fig.pos="H"}
@@ -183,7 +183,7 @@ plot_beverage_sales_comparison(beverage_sales, "ZeroCal", "Sugary", "Site")
 
 ## Missing Values
 
-The following plot visualizes the missing values.
+The figure \@ref(fig:missing-balance) visualizes the missing values.
 
 
 ```{r missing-balance, echo=FALSE, out.width='75%', fig.width=9, fig.height=6, fig.show='hold',fig.align='center', fig.cap="This plot provides insight into the frequency of missingness within the dataset. Black indicates missing data. Additionally it shows the quanitity of data available by site and by intervention."}
@@ -280,7 +280,7 @@ The choice of the logarithm of the ratio of zero-calorie to sugary beverage sale
 
 ## Results and Diagnostics
 
-The coefficient of the model are presented in Table 2. Moreover the residual plot in following figure shows pattern-free behaviour which indicate an appropriate variance structure. 
+The coefficient of the model are presented in Table 2. Moreover the residual plot in Figure \@ref(fig:diagnostics) shows pattern-free behaviour which indicate an appropriate variance structure. 
 
 ```{r coefs, echo=FALSE, message=FALSE, warning=FALSE}
 library(broom.mixed)
@@ -313,7 +313,7 @@ plot(model)
 
 
 ```{=latex}
-\textbf{Parham Pishrobat (71097927):} Introduction, data, ITSA, other EDA plots, formatting\\ \\ \\
+\textbf{Parham Pishrobat (71097927):} Introduction, data, Formal Analysis, Appendix B, Conclusion, other EDA plots, formatting\\ \\ \\
 \textbf{Johnson Chen (85784080):}  \quad LMEM, Correlation, appendix, formatting, edits after peer review, proofread.\\ \\ \\
 \textbf{Sarah Masri (97415681):} \quad GEE, Missing Values, conclusion, formatting, edits after peer review, proofread.\\ \\ \\
 ```

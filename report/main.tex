@@ -37,6 +37,46 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -72,6 +112,20 @@
 \usepackage{xcolor}
 \usepackage{setspace}
 \setstretch{1.2}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -100,52 +154,38 @@
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Concerns around sugar consumption and its health implications have prompted many interventions to encourage consumers to cut down on sugary beverages. The current study investigates the effectiveness of two types of intervention strategies to motivate and incentivize consumers to choose zero-calorie beverages over sugary alternatives. In particular, the research question focuses on the impact of two strategies to inform consumers about calorie content through visual presentations: laebls highlighting either the calorie content or the physical activity required to burn calories. Furthermore, the effectiveness of price discounts on behaviour is explored, both independently and in conjunction with explanatory messaging. This study also seeks to understand if the effectiveness of those strategies varies across different hospital sites.
+Concerns around sugar consumption and its health implications have prompted many interventions to encourage consumers to cut down on sugary beverages. The current study investigates the effectiveness of two types of intervention strategies to motivate and incentivize consumers to choose zero-calorie beverages over sugary alternatives. In particular, the research question focuses on the impact of two strategies to inform consumers about calorie content through visual presentations: labels highlighting either the calorie content or the physical activity required to burn calories. Furthermore, the effectiveness of price discounts on behaviour is explored, both independently and in conjunction with explanatory messaging. This analysis aim to determine the suitable model to examine the intervention effects, perform the analysis and identify the significant effects impacting immediate and long-term preferences of the customers, adjust for differences across data collection sites, and validate the underlying assumptions of the chosen model.
 
 \hypertarget{data-description-and-summaries}{%
 \section{Data Description and Summaries}\label{data-description-and-summaries}}
 
-The study adopts an interrupted time-series multi-site quasi-experimental design to assess the effectiveness of the five interventions on the purchase patterns of bottled sugary and zero-calorie beverages. The data are recorded from cafeterias and convenience shops at three hospital sites, denoted by A, B, and C. Hospital A is urban and has two cafeterias and two convenience shops. Hospital B is also an urban setting but it has only one cafeteria. Hospital C is a suburban setting, having one cafeteria and one convenience shop. Both interventions and data collection were automatic at site A and by trained personnel in sites B and C. Sugary beverages include regular soft drinks and iced teas, sweetened with natural sugars like sucrose and corn syrup, and zero-calorie beverages include diet soft drinks and teas, and water. Other beverages, such as juice and milk, are excluded from the study due to challenges in identifying their sugar contents. Nevertheless, the total sales information is kept in the study to represent the overall patterns of beverage sales irrespective of their sugar content.
+The study adopts an interrupted time-series multi-site quasi-experimental design to assess the effectiveness of the five interventions on the purchase patterns of bottled sugary and zero-calorie beverages. The data are recorded from cafeterias and convenience shops at three hospital sites, denoted by A, B, and C.
 
-The experiment, starting on October 27, 2009 and ending 32 weeks later, measure daily sales of bottled sugary and zero-calorie beverages. The study period included a baseline data collection phase, intervention phases to elicit behaviour change, and washout periods to assess the persistence of intervention effects. The dataset contains 631 sales counts for zero-calorie, sugary, and all drinks, sale location, day of the week, and the type of intervention applied. The recorded variables consist of sales count, day of the week, site location, type of intervention, and beverage category (zero-calorie and sugary options). The price interventions consist of two periods of 10\% discount on zero-calorie beverages, with one phase providing additional explanatory messaging about the discount. The calorie messaging interventions provided information on the caloric content of sugary drinks, the physical activity required to burn off these calories, and a combination of both strategies.
+The experiment, starting on October 27, 2009 and ending 32 weeks later, measure daily sales of bottled sugary and zero-calorie beverages. The study period included a baseline data collection phase, intervention phases to elicit behaviour change, and washout periods to assess the persistence of intervention effects. The dataset contains 631 sales counts for variables zero-calorie, sugary, and all drinks, sale location, day of the week, and the type of intervention applied. The price interventions consist of two periods of 10\% discount on zero-calorie beverages, with one phase providing additional explanatory messaging about the discount. The calorie messaging interventions provided information on the caloric content of sugary drinks, the physical activity required to burn off these calories, and a combination of both strategies.
 
-The day of week, site and intervention covariates are each considered categorical data types. Other observations are classified under numerical data types as they measure sales counts. Missing data is observed over some control periods of the study.
+The day of week, site and intervention covariates are each considered categorical data types. Other observations are classified under numerical data types as they measure sales counts. The total sales information is kept in the study to represent the overall patterns of beverage sales irrespective of their sugar content. Missing data is observed over some control periods of the study.
 
 \hypertarget{exploratory-data-analysis}{%
 \section{Exploratory Data Analysis}\label{exploratory-data-analysis}}
 
-Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns, relationships, and outliers in the data. It ensures the subsequent analysis is built on a solid understanding of the data, thereby enhancing the reliability of the findings. To explore the data of the study, box plots and time series plots are highly important and included in the main report. These visualizations provide insight into the distribution of sugary and zero-calorie beverage sales, as well as their temporal trends. Additionally, Appendix A provides supplementary visualizations encompassing missing values, histograms and a correlation plot. Collectively, these exploratory techniques build a foundation and justification to the development of the formal analysis, aiming to explore the impact product labeling on beverage sales.
-
-\hypertarget{time-series-plot}{%
-\subsection{Time Series Plot}\label{time-series-plot}}
+Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns, relationships, and outliers in the data. To explore the data of the study, time series plots are included in the main report. Additionally, Appendix A provides supplementary visualizations encompassing missing values, histograms. These visualizations provide insight into the distribution of sugary and zero-calorie beverage sales, as well as their temporal trends.
 
 Figure \ref{fig:sales-time-series-plot} represents the sales time series of zero-calorie and sugary beverages across different sites, colored by the Intervention. Both sugary drink and zero calorie drink sales trends are different across different interventions, indicating that different interventions do have different impacts on sales. The sales trends are different across sites, and the effect of intervention appears to be different across sites as well.
 
 \begin{figure}
 \centering
 \includegraphics{main_files/figure-latex/sales-time-series-plot-1.pdf}
-\caption{\label{fig:sales-time-series-plot}This plot illustrates the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.}
+\caption{\label{fig:sales-time-series-plot}Time Series plot illustrating the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.}
 \end{figure}
 
-\hypertarget{boxplot}{%
-\subsection{Boxplot}\label{boxplot}}
-
-A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. Figure \ref{fig:Boxplots} shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range (IQR), and the whiskers extending to the furthest points that are not considered outliers. Outliers are individual points beyond the whiskers.
-
-Note that bimodality of sales exists in the data. Specifically, there are considerably more beverage sales on weekdays than on the weekend. To better represent the data, the weekend sales are excluded from the plot. Boxplots for all and weekend sales respectively are present in the appendix (Figure \ref{fig:appendix-boxplots}). The interventions, labelled on the x-axis, include baseline (preint), discount \& messaging (dismes), washout period (wash), the discount only (dis), second washout (wash2), follow up (follow), calorie content poster (cal), the exercise required to burn the calorie content (excer), and combination of the two (both). It is observable that the maximum and median number of sales during the week varies with intervention.
-
-\begin{figure}
-\centering
-\includegraphics{main_files/figure-latex/Boxplots-1.pdf}
-\caption{\label{fig:Boxplots}The boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Each intervention is colour-coded and shows the range of sales data with the central line representing the median sales. Note that the plot only illustrates weekday sales.}
-\end{figure}
+A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. Figure \ref{fig:appendix-boxplots} in the appendix shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range, and the whiskers extending to the furthest points that are not considered outliers. Note that bimodality of sales exists in the data. Specifically, there are considerably more beverage sales on weekdays than on the weekend. To better represent the data, the weekday and weekend sales are separated into two plots. It is observable that the maximum and median number of sales during the week varies with intervention.
 
 \hypertarget{missing-values-and-data-imbalance}{%
 \subsection{Missing Values and Data Imbalance}\label{missing-values-and-data-imbalance}}
 
-The dataset contains some missing values, as obseved in Figure \ref{fig:missing-balance}. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. There are 9 days of unrecorded zero-calorie and sugary beverage sales, 7 of which represent the last week of the study at site B. Failing to address missing data may lead to a reduction of statistical power and biased results. It appears that the missing data are missing not at random (MNAR), meaning that the probability of any given observation being missing varies for unidentified reasons (e.g., hospital closures, public events). This supports the appropriateness in choice of model in the formal analysis.
+The dataset contains some missing values, as obseved in Figure \ref{fig:missing-balance}. It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. There are 9 days of unrecorded zero-calorie and sugary beverage sales, 7 of which represent the last week of the study at site B. This report removed the last week of study at site B, treating it as not recorded entirely. The rest of missing values are considered Missing At Random (MAR) due to the small amount.
 
-It is also important to note whether of not the dataset reflects a roughly equal number of observations between the sites and interventions respectively. If one class in either the site or interventions are represented disproportionately, then models used may become biased towards the most frequently seen class. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, the `follow', `wash', and `wash2' levels are imbalanced when compared to the other interventions.
+It is also important to note whether of not the dataset reflects a roughly equal number of observations between the sites and interventions respectively. If one class in either the site or interventions are represented disproportionately, then models used may become biased towards the most frequently seen class. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, some of the no-intervention levels are imbalanced when compared to the other interventions, this does not have a significant impact on the analysis of the interventions.
 
 \hypertarget{formal-analysis}{%
 \section{Formal Analysis}\label{formal-analysis}}
@@ -161,6 +201,8 @@ These insights draw attention to the challenges of influencing dietary choices a
 
 In conclusion, our analysis demonstrates the value of integrating ITSA with LMM for evaluating public health interventions in shifting consumer behaviour. While our findings highlight the potential of certain interventions to positively influence consumer behaviour, they also point to the importance of considering temporal patterns in the design and implementation of health promotion strategies. The refined analysis, which incorporates interactions between interventions and time, reveal the progressive influence of exercise-related messaging of the calorie content on shifting consumer preferences towards zero-calorie beverages. Furthermore, the discounting strategies show a significant impact after commencing the intervention but fail to sustain the impact. Variations in preference between weekdays and weekends further highlighted the importance of timing and pointing to different target populations.
 
+\pagebreak
+
 \hypertarget{references}{%
 \section{References}\label{references}}
 
@@ -170,98 +212,30 @@ UCLA Statistical Consulting Group. (n.d.). Introduction to Linear Mixed Models. 
 
 University of Virginia Library. (n.d.). Getting Started with Generalized Estimating Equations. Retrieved March 1, 2024, from \url{https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations}
 
-\hypertarget{other-resources}{%
-\subsection{Other Resources:}\label{other-resources}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://rpubs.com/mbounthavong/MEPS_tutorial_6_itsa}{\underline{\textcolor{blue}{Interrupted Time Series Analysis}}}
-\item
-  \href{https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations\#:~:text=Generalized\%20estimating\%20equations\%2C\%20or\%20GEE,(i.e.\%2C\%20model\%20coefficients).}{\underline{\textcolor{blue}{Getting Started with Generalized Estimating Equations}}}
-\item
-  Linear Mixed Effect Model Tutorials:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://jontalle.web.engr.illinois.edu/MISC/lme4/bw_LME_tutorial.pdf}{\underline{\textcolor{blue}{LMEM tutorial (illinois.edu)}}}
-  \item
-    \href{https://ademos.people.uic.edu/Chapter17.html}{\underline{\textcolor{blue}{Chapter 17: Mixed Effects Modeling (uic.edu)}}}
-  \item
-    \href{https://stats.idre.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/}{\underline{\textcolor{blue}{Introduction to Linear Mixed Models (ucla.edu)}}}
-  \item
-    \href{https://bodo-winter.net/tutorial/bw_LME_tutorial1.pdf}{\underline{\textcolor{blue}{Mixed Effects Models (bodywinter.com)}}}
-  \item
-    \href{https://ourcodingclub.github.io/tutorials/mixed-models/}{\underline{\textcolor{blue}{Mixed Effects, lme4 Tutorial}}}
-  \item
-    \href{https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf}{\underline{\textcolor{blue}{Fitting Linear Mixed-Effects Models Using lme4}}}
-  \end{itemize}
-\item
-  ASDA Teaching Recordings:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://community.grad.ubc.ca/gps/event/22318}{\underline{\textcolor{blue}{Exploratory Data Analysis}}}
-  \item
-    \href{https://community.grad.ubc.ca/gps/event/22327}{\underline{\textcolor{blue}{Study Design and Data Collection Essentials}}}
-  \item
-    \href{https://community.grad.ubc.ca/gps/event/22330}{\underline{\textcolor{blue}{Mixed Effects Models}}}
-  \end{itemize}
-\item
-  Multiple Testing Correction Techniques:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://www.stat.berkeley.edu/~mgoldman/Section0402.pdf}{\underline{\textcolor{blue}{Multiple Testing Correction Techniques}}}
-  \item
-    \href{https://egap.org/resource/10-things-to-know-about-multiple-comparisons/}{\underline{\textcolor{blue}{An Article on the Multiple Testing Problem}}}
-  \end{itemize}
-\item
-  Model Assumptions and Interpretations:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \href{https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434}{\underline{\textcolor{blue}{Linear Mixed Effects Model Assumptions}}}
-  \item
-    \href{https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html}{\underline{\textcolor{blue}{DHARMa: a Residual Diagnostics Tool for LMEM}}}
-  \item
-    \href{www.medicine.mcgill.ca/epidemiology/Joseph/courses/EPIB-621/interaction.pdf}{\underline{\textcolor{blue}{Interactions Explained}}}
-  \item
-    \href{https://www.theanalysisfactor.com/interactions-categorical-and-continuous-variables/}{\underline{\textcolor{blue}{Understanding Interactions between Categorical and Continuous Variables}}}
-  \item
-    \href{https://ademos.people.uic.edu/Chapter13.html}{\underline{\textcolor{blue}{Interaction Plots}}}
-  \item
-    \href{https://rpubs.com/tf_peterson/interactionplotDemo}{\underline{\textcolor{blue}{Interaction Plots}}}
-  \item
-    \href{https://mcfromnz.wordpress.com/2011/03/02/anova-type-iiiiii-ss-explained/}{\underline{\textcolor{blue}{Testing for Interaction Significance}}}
-  \item
-    \href{https://cran.r-project.org/web/packages/emmeans/vignettes/interactions.html}{\underline{\textcolor{blue}{Package `emmeans` for Post-hoc Analysis and Pairwise Comparisons of the Interaction Effect}}}
-  \item
-    \href{https://stats.oarc.ucla.edu/r/seminars/interactions-r/}{\underline{\textcolor{blue}{Interaction Analysis in R}}}
-  \item
-    \href{https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html}{\underline{\textcolor{blue}{Comparisons and Contrasts in emmeans}}}
-  \end{itemize}
-\end{itemize}
-
-\pagebreak
-
 \hypertarget{appendix-appendix}{%
 \appendix}
 
 
-\hypertarget{appendix-a}{%
-\section{Appendix A}\label{appendix-a}}
+\hypertarget{appendix-supplementary-visualizations}{%
+\section{Appendix : Supplementary Visualizations}\label{appendix-supplementary-visualizations}}
 
 The following sub section contains additional figures and their analysis results.
+
+\hypertarget{boxplot}{%
+\subsection{Boxplot}\label{boxplot}}
+
+The Figure \ref{fig:appendix-boxplots} hows the sales distribution data from weekdays and weekends across sites.
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/appendix-boxplots-1.pdf}
+\caption{\label{fig:appendix-boxplots}The boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Each intervention is colour-coded and shows the range of sales data with the central line representing the median sales. Note that the plots only illustrates weekday sales.}
+\end{figure}
 
 \hypertarget{histogram-plots}{%
 \subsection{Histogram Plots}\label{histogram-plots}}
 
-The following histogram plots show the frequency distribution of sales for Sugary (in purple), Zero-Calorie (ZeroCal, in teal), and Total (in yellow) beverages. The x-axis of each histogram represents the sales volume, while the y-axis indicates the count of observations within each sales range. The pattern in all histograms is similar: most sales numbers cluster at the lower end of the scale, suggesting a higher frequency of days with fewer sales; however, the sales histograms exhibit a second weaker mode, indicating two common sales volumes across the observed period.
+The Figure \ref{fig:Plot-Histograms} (histogram plots) show the frequency distribution of sales for Sugary (in purple), Zero-Calorie (ZeroCal, in teal), and Total (in yellow) beverages. The x-axis of each histogram represents the sales volume, while the y-axis indicates the count of observations within each sales range. The pattern in all histograms is similar: most sales numbers cluster at the lower end of the scale, suggesting a higher frequency of days with fewer sales; however, the sales histograms exhibit a second weaker mode, indicating two common sales volumes across the observed period.
 
 \begin{figure}
 \centering
@@ -272,7 +246,7 @@ The following histogram plots show the frequency distribution of sales for Sugar
 \hypertarget{scatter-plot}{%
 \subsection{Scatter Plot}\label{scatter-plot}}
 
-The following scatter plot depicts the relationship between zero-calorie and sugary beverage sales at three different hospital sites: A or chop (purple), B or HF (blue), and C or NS (yellow). The x-axis represents zero-calorie beverage sales, and the y-axis represents sugary beverage sales. A dashed line, suggesting the line of equality, indicates where the sales for both types would be equal. Points above the line indicate higher sugary beverage sales when compared to zero-calorie ones, and points below the line indicate the opposite. The clustering of points towards the upper right suggests that for higher sales volumes, sugary beverages tend to sell as much as or more than zero-calorie options, particularly in site A (chop). The plot reveals variability in the sales patterns across sites, with the HF site having a more direct correlation between ZeroCal and Sugary sales when compared to other sites.
+The figure \ref{fig:Sales-Scatterplot} (scatter plot) depicts the relationship between zero-calorie and sugary beverage sales at three different hospital sites: A or chop (purple), B or HF (blue), and C or NS (yellow). The x-axis represents zero-calorie beverage sales, and the y-axis represents sugary beverage sales. A dashed line, suggesting the line of equality, indicates where the sales for both types would be equal. Points above the line indicate higher sugary beverage sales when compared to zero-calorie ones, and points below the line indicate the opposite. The clustering of points towards the upper right suggests that for higher sales volumes, sugary beverages tend to sell as much as or more than zero-calorie options, particularly in site A (chop). The plot reveals variability in the sales patterns across sites, with the HF site having a more direct correlation between ZeroCal and Sugary sales when compared to other sites.
 
 \begin{figure}
 \centering
@@ -280,28 +254,10 @@ The following scatter plot depicts the relationship between zero-calorie and sug
 \caption{\label{fig:Sales-Scatterplot}This scatter plot contrasts zero-calorie and sugary beverage sales, colour-coded by the site. Each point represents the paired sales data for a given day, with the site-specific colour coding (chop in purple, HF in blue, NS in yellow) illustrating the sales trend at each location. The dashed diagonal line marks the parity where the sales of both beverage types are equal. Deviations from this line highlight the predominance of one beverage type over the other in daily sales.}
 \end{figure}
 
-\hypertarget{boxplots}{%
-\subsection{Boxplots}\label{boxplots}}
-
-Note that due to the bimodality of sales, the boxplot incorrectly indicates many outliers (Figure \ref{fig:appendix-boxplots}).
-
-\begin{figure}
-\centering
-\includegraphics{main_files/figure-latex/appendix-boxplots-1.pdf}
-\caption{\label{fig:appendix-boxplots}The boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Each intervention is colour-coded and shows the range of sales data with the central line representing the median sales. Note that the plots only illustrates weekday sales.}
-\end{figure}
-
-\hypertarget{correlation-plot}{%
-\subsection{Correlation Plot}\label{correlation-plot}}
-
-This correlation plot (Figure \ref{fig:correlation}) investigates the correlation structure between numeric variables within the dataset. In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables.
-
-\begin{center}\includegraphics{main_files/figure-latex/correlation-1} \end{center}
-
 \hypertarget{missing-values}{%
 \subsection{Missing Values}\label{missing-values}}
 
-The following plot visualizes the missing values.
+The figure \ref{fig:missing-balance} visualizes the missing values.
 
 \begin{figure}
 
@@ -312,61 +268,121 @@ The following plot visualizes the missing values.
 \caption{This plot provides insight into the frequency of missingness within the dataset. Black indicates missing data. Additionally it shows the quanitity of data available by site and by intervention.}\label{fig:missing-balance}
 \end{figure}
 
-\hypertarget{appendix-b}{%
-\section{Appendix B}\label{appendix-b}}
+\pagebreak
 
-\hypertarget{itsa-model}{%
-\subsection{ITSA Model}\label{itsa-model}}
+\hypertarget{appendix-technical-analysis}{%
+\section{Appendix : Technical Analysis}\label{appendix-technical-analysis}}
 
-Interrupted Time Series Analysis (ITSA) with segmented regression is a statistical technique tailored for quasi-experimental designs that involve interventions at known time points. ITSA is particularly suited for this study where interventions are sequentially introduced in a multi-site setting and where the main interest lies in the impact on sales of zero-calorie (ZeroCal) and sugary (Sugary) beverages.
+\hypertarget{mathematical-formulation}{%
+\subsection{Mathematical Formulation}\label{mathematical-formulation}}
 
-The general form of the segmented regression model for ITSA applied to this context can be expressed as:
+The core of our analysis utilizes a combined approach of Interrupted Time Series Analysis (ITSA) and Linear Mixed Models (LMMs) to assess the effects of health interventions on the choice between zero-calorie and sugary beverages. This approach enables the examination of both the immediate and the longitudinal impacts of the interventions across different sites. The mathematical model integrating ITSA principles within an LMM framework is formulated as follows:
 
-\[Y_t = \beta_0 + \beta_1 T_t + \sum_{k=1}^{K} (\beta_{2k} I_{kt} + \beta_{3k} T_{kt} I_{kt}) + \epsilon_t \]
+\[
+LogRatio_{st} = \beta_0 + \beta_{int}\times INT_{st} + \beta_{int:time}\times INT_{st} \times Time_s + \beta_{dow} \times  DOW_{st} + b_{s}\times SITE_t + \epsilon_{st} 
+\]
 
-Where:
-- \(Y_t\) is the sales of beverages at time \(t\).
-- \(T_t\) is the time since the start of the study (time trend).
-- \(I_{kt}\) is an indicator for intervention \(k\) (0 before intervention k, 1 after intervention k).
-- \(T_{kt}\) is the time since intervention \(k\) started, multiplied by the intervention indicator.
-- \(\beta_0\) is the intercept, representing the baseline level of sales.
-- \(\beta_1\) is the coefficient for the time trend, representing the pre-intervention trend of sales.
-- \(\beta_{2k}\) is the change in level immediately after intervention \(k\).
-- \(\beta_{3k}\) is the change in trend after intervention \(k\).
-- \(K\) is the total number of interventions.
-- \(\epsilon_t\) is the error term which is assumed to be normally distributed with mean zero and constant variance.
+where model components are defined based on the Table 1. Note that \(s\) and \(t\) indices represent the time and site.
 
-This model can be fitted separately for ZeroCal and Sugary sales to ascertain the unique effects of interventions on each type of beverage. The model can also be expanded to account for auto-correlated errors which are common in time series data, by incorporating an AR(1) process or other suitable autocorrelation structures.
+\begin{table}
 
-For the investigation of site-specific effects, random effects or fixed effects models can be used. A random effects model would be suitable if we assume that the sites are a random sample from a larger population, with the model taking the form:
+\caption{(\#tab:table 1)Variable Description}
+\centering
+\begin{tabular}[t]{ll}
+\toprule
+Term & Description\\
+\midrule
+\cellcolor{gray!6}{$LogRatio_{st}$} & \cellcolor{gray!6}{Log ratio of zero-calorie to sugary beverage sales}\\
+$Time_s$ & Days since the start of the intervention at site s\\
+\cellcolor{gray!6}{$Site_t$} & \cellcolor{gray!6}{Indicator function of site at time t}\\
+$INT_{st}$ & Indicator function of intervention type at time t and site s\\
+\cellcolor{gray!6}{$DOW_{st}$} & \cellcolor{gray!6}{Indicator function of day of week at time t and site s}\\
+\addlinespace
+$\beta_0$ & Intercept, representing the baseline log ratio\\
+\cellcolor{gray!6}{$\beta_{int}$} & \cellcolor{gray!6}{Coefficients of fixed effect of the intervention}\\
+$\beta_{int:time}$ & Coefficients of interaction effect between interventions and time\\
+\cellcolor{gray!6}{$\beta_{dow}$} & \cellcolor{gray!6}{Coefficient of fixed effect of the day of the week}\\
+$b_{s}$ & Random effect for site s\\
+\addlinespace
+\cellcolor{gray!6}{$\epsilon_{st}$} & \cellcolor{gray!6}{Error term for the model at time t and site s}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\[Y_{it} = \beta_0 + \beta_1 T_t + u_i + \sum_{k=1}^{K} (\beta_{2k} I_{kt} + \beta_{3k} T_{kt} I_{kt}) + \epsilon_{it} \]
+This formulation allows for a nuanced analysis that captures the dynamic effects of interventions over time, adjusted for site-specific variations and weekly sales patterns. By employing this ITSA within an LMM framework, the model adeptly handles the hierarchical data structure and accounts for both fixed and random effects.
 
-Where \(u_i\) is the random effect for site \(i\) and \(\epsilon_{it}\) is the within-site error term.
+\hypertarget{implementation}{%
+\subsection{Implementation}\label{implementation}}
 
-By contrast, a fixed effects model would treat each site as a unique entity and estimate site-specific intercepts:
+In our study, we opted for the \texttt{nlme} package in R for its comprehensive support in fitting Linear Mixed Models (LMMs), which allows for the inclusion of both fixed and random effects, essential for the analysis of complex data structures like ours. The \texttt{lme} function from this package was specifically chosen due to its flexibility in specifying a wide range of variance and correlation structures, critical for accurately modeling the intricate dynamics of our data. By preprocessing the data to omit missing values, we ensure the robustness of our model against potential biases that missing data could introduce. The decision to condense the day of the week into two categories, `Weekday' and `Weekend', and to simplify the intervention levels by grouping non-intervention periods under a single category `noint', was driven by the desire to streamline the analysis and enhance interpretability without sacrificing the granularity necessary for meaningful insights.
 
-\[Y_{it} = \beta_{0i} + \beta_1 T_t + \sum_{k=1}^{K} (\beta_{2k} I_{kt} + \beta_{3k} T_{kt} I_{kt}) + \epsilon_{it} \]
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(nlme)}
+\NormalTok{clean\_data }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(beverage\_sales)}
+\CommentTok{\# Recode DofW to two levels: Weekday and Weekend}
+\NormalTok{clean\_data}\SpecialCharTok{$}\NormalTok{DofW }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(clean\_data}\SpecialCharTok{$}\NormalTok{DofW }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{), }
+                                 \StringTok{\textquotesingle{}Weekday\textquotesingle{}}\NormalTok{, }
+                                 \StringTok{\textquotesingle{}Weekend\textquotesingle{}}\NormalTok{))}
+\CommentTok{\# Recode Interventions to mark all no interventiopn periods as "noint"}
+\FunctionTok{levels}\NormalTok{(clean\_data}\SpecialCharTok{$}\NormalTok{Intervention)[}\FunctionTok{levels}\NormalTok{(clean\_data}\SpecialCharTok{$}\NormalTok{Intervention) }\SpecialCharTok{\%in\%} 
+                                  \FunctionTok{c}\NormalTok{(}\StringTok{"preint"}\NormalTok{, }\StringTok{"follow"}\NormalTok{, }\StringTok{"wash"}\NormalTok{, }\StringTok{"wash2"}\NormalTok{)] }\OtherTok{\textless{}{-}} \StringTok{"noint"}
 
-With \(\beta_{0i}\) being the intercept for site \(i\), allowing for different baseline sales levels at each site.
+\CommentTok{\# Adding a variance structure to the model}
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{lme}\NormalTok{(LogRatio }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Intervention }\SpecialCharTok{+}\NormalTok{ Intervention}\SpecialCharTok{:}\NormalTok{Count }\SpecialCharTok{+}\NormalTok{ DofW ,}
+             \AttributeTok{data        =}\NormalTok{ clean\_data,}
+             \AttributeTok{random      =} \SpecialCharTok{\textasciitilde{}} \DecValTok{1} \SpecialCharTok{|}\NormalTok{ Site,}
+             \AttributeTok{weights     =} \FunctionTok{varPower}\NormalTok{(}\AttributeTok{form =} \SpecialCharTok{\textasciitilde{}} \FunctionTok{I}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{ZeroCal) }\SpecialCharTok{+}\NormalTok{ Sugary), }
+             \AttributeTok{correlation =} \FunctionTok{corRatio}\NormalTok{(}\AttributeTok{form =} \SpecialCharTok{\textasciitilde{}}\NormalTok{ Count }\SpecialCharTok{|}\NormalTok{ Site),}
+             \AttributeTok{method      =} \StringTok{"ML"}\NormalTok{)}
 
-The interaction terms \(\beta_{3k} T_{kt} I_{kt}\) are critical for evaluating the sustained impact of interventions over time. If these coefficients are significantly different from zero, it suggests that the interventions had an effect beyond an immediate jump or drop in sales, altering the underlying trend of beverage sales.
+\CommentTok{\# summary(model)}
+\end{Highlighting}
+\end{Shaded}
 
-To evaluate the combined effect of interventions, interaction terms between interventions can be included:
+The choice of the logarithm of the ratio of zero-calorie to sugary beverage sales as the response variable was motivated by its ability to symmetrically quantify shifts in consumer preferences, providing a balanced measure that reflects relative changes in sales rather than absolute values, which is particularly insightful for evaluating the effectiveness of health interventions. The incorporation of a power variance function with the sales data as covariates addresses the potential issue of heteroscedasticity, ensuring that the model adequately reflects the variability in the data. The rational quadratic spatial correlation structure, specified through the \texttt{corRatio} function, was selected for its suitability in capturing the decay of correlation over time within each site, a feature that aligns well with the temporal nature of our data. This correlation structure, coupled with the defined variance model, encapsulates our understanding of the data's underlying patterns, ensuring that the model's assumptions about residual variance and within-site correlations are well-aligned with the observed behavior of our dataset, thus facilitating a more nuanced and accurate interpretation of the impact of health-focused interventions on beverage selection.
 
-\[Y_{it} = \beta_0 + \beta_1 T_t + u_i + \sum_{k=1}^{K} \beta_{2k} I_{kt} + \sum_{k=1}^{K} \beta_{3k} T_{kt} I_{kt} + \sum_{k<l} \beta_{4kl} I_{kt} I_{lt} + \epsilon_{it} \]
+\hypertarget{results-and-diagnostics}{%
+\subsection{Results and Diagnostics}\label{results-and-diagnostics}}
 
-Here, \(\beta_{4kl}\) captures the combined effect of interventions \(k\) and \(l\) when both are in effect.
+The coefficient of the model are presented in Table 2. Moreover the residual plot in Figure \ref{fig:diagnostics} shows pattern-free behaviour which indicate an appropriate variance structure.
 
-Lastly, the model can be augmented with covariates to control for other factors that may influence sales, such as seasonal effects or marketing campaigns. These covariates can be time-varying and should be included in the model if they are thought to confound the relationship between the interventions and sales.
+\begin{table}
+
+\caption{\label{tab:coefs}Significant Model Coefficients and Their P-Values}
+\centering
+\begin{tabular}[t]{lrr}
+\toprule
+term & estimate & p.value\\
+\midrule
+\cellcolor{gray!6}{Interventiondis} & \cellcolor{gray!6}{0.880} & \cellcolor{gray!6}{0.044}\\
+Interventiondismes & 0.875 & 0.014\\
+\cellcolor{gray!6}{Interventionexcer} & \cellcolor{gray!6}{1.792} & \cellcolor{gray!6}{0.001}\\
+Interventionnoint & 0.719 & 0.032\\
+\cellcolor{gray!6}{DofWWeekend} & \cellcolor{gray!6}{-0.087} & \cellcolor{gray!6}{0.000}\\
+\addlinespace
+Interventionboth:Count & 0.004 & 0.039\\
+\cellcolor{gray!6}{Interventionexcer:Count} & \cellcolor{gray!6}{-0.007} & \cellcolor{gray!6}{0.008}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{main_files/figure-latex/diagnostics-1} 
+
+}
+
+\caption{The residual plot provides insight into the fitness of the model, reveal potential outliers, and help validate assumptions. Here, the residual plot is pattern-free and scattered roughly symmetrically around zero. The heteroscedasticity seen in residual plot before applying the appropriate variance structure is not apparent anymore.}\label{fig:diagnostics}
+\end{figure}
 
 \pagebreak
 
 \hypertarget{contributions}{%
 \section{Contributions}\label{contributions}}
 
-\textbf{Parham Pishrobat (71097927):} Introduction, data, ITSA, other EDA plots, formatting\\ \\ \\
-\textbf{Johnson Chen (85784080):}  \quad LMEM, correlation, appendix, formatting\\ \\ \\
-\textbf{Sarah Masri (97415681):} \quad \quad GEE, Missing Values, conclusion, formatting, edits after peer review.\\ \\ \\
+\textbf{Parham Pishrobat (71097927):} Introduction, data, Formal Analysis, Appendix B, Conclusion, other EDA plots, formatting\\ \\ \\
+\textbf{Johnson Chen (85784080):}  \quad LMEM, Correlation, appendix, formatting, edits after peer review, proofread.\\ \\ \\
+\textbf{Sarah Masri (97415681):} \quad GEE, Missing Values, conclusion, formatting, edits after peer review, proofread.\\ \\ \\
 
 \end{document}
