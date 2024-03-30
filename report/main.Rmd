@@ -112,28 +112,6 @@ Upon initial analysis, which focuses solely on the direct before-and-after impac
 These insights draw attention to the challenges of influencing dietary choices and the variable success rates of different intervention strategies. Specifically, the effectiveness of visually linking calorie consumption with physical activity emerged as a significant factor in promoting zero-calorie beverage choices. This variation in intervention effectiveness, coupled with the importance of intervention timing demonstrate the strategic value of timing in intervention planning. While the methodology employed provides valuable perspectives on intervention impacts, it operates under certain assumptions, such as linear temporal changes and uniform intervention effects across sites, which may simplify the complex dynamics of actual consumer behaviour. This complexity points to the challenges involved in designing universally effective health promotion interventions, underscoring the need for targeted, contextually aware strategies to encourage healthier consumer choices effectively.
 
 
-```{r Model, warning=FALSE, include=FALSE}
-library(nlme)
-beverage_sales_complete <- na.omit(beverage_sales)
-# Recode DofW to two levels: Weekday and Weekend
-beverage_sales_complete$DofW <- factor(ifelse(beverage_sales_complete$DofW %in% c(1, 2, 3, 4), 
-                                              'Weekday', 
-                                              'Weekend'))
-# Recode Interventions to mark all no interventiopn periods as "noint"
-levels(beverage_sales_complete$Intervention)[levels(beverage_sales_complete$Intervention) %in% 
-                                               c("preint", "follow", "wash", "wash2")] <- "noint"
-
-# Adding a variance structure to the model
-model <- lme(LogRatio ~ Intervention + Intervention:Count + DofW ,
-             data        = beverage_sales_complete,
-             random      = ~ 1 | Site,
-             weights     = varPower(form = ~ I(1/ZeroCal) + Sugary), 
-             correlation = corRatio(form = ~ Count | Site),
-             method      = "ML")
-
-summary(model)
-```
-
 
 # Conclusions
 
@@ -153,7 +131,7 @@ University of Virginia Library. (n.d.). Getting Started with Generalized Estimat
 
 
 
-# Appendix A
+# Appendix : Supplementary Visualizations
    
 
 The following sub section contains additional figures and their analysis results.
@@ -220,54 +198,117 @@ grid.arrange(miss_plot1, miss_plot2, ncol=2)
 
 
 
-# Appendix B
 
 
-## ITSA Model
+\pagebreak
 
-Interrupted Time Series Analysis (ITSA) with segmented regression is a statistical technique tailored for quasi-experimental designs that involve interventions at known time points. ITSA is particularly suited for this study where interventions are sequentially introduced in a multi-site setting and where the main interest lies in the impact on sales of zero-calorie (ZeroCal) and sugary (Sugary) beverages.
 
-The general form of the segmented regression model for ITSA applied to this context can be expressed as:
+# Appendix : Technical Analysis
 
-$$Y_t = \beta_0 + \beta_1 T_t + \sum_{k=1}^{K} (\beta_{2k} I_{kt} + \beta_{3k} T_{kt} I_{kt}) + \epsilon_t $$
+## Mathematical Formulation
 
-Where:
-- $Y_t$ is the sales of beverages at time $t$.
-- $T_t$ is the time since the start of the study (time trend).
-- $I_{kt}$ is an indicator for intervention $k$ (0 before intervention k, 1 after intervention k).
-- $T_{kt}$ is the time since intervention $k$ started, multiplied by the intervention indicator.
-- $\beta_0$ is the intercept, representing the baseline level of sales.
-- $\beta_1$ is the coefficient for the time trend, representing the pre-intervention trend of sales.
-- $\beta_{2k}$ is the change in level immediately after intervention $k$.
-- $\beta_{3k}$ is the change in trend after intervention $k$.
-- $K$ is the total number of interventions.
-- $\epsilon_t$ is the error term which is assumed to be normally distributed with mean zero and constant variance.
+The core of our analysis utilizes a combined approach of Interrupted Time Series Analysis (ITSA) and Linear Mixed Models (LMMs) to assess the effects of health interventions on the choice between zero-calorie and sugary beverages. This approach enables the examination of both the immediate and the longitudinal impacts of the interventions across different sites. The mathematical model integrating ITSA principles within an LMM framework is formulated as follows:
 
-This model can be fitted separately for ZeroCal and Sugary sales to ascertain the unique effects of interventions on each type of beverage. The model can also be expanded to account for auto-correlated errors which are common in time series data, by incorporating an AR(1) process or other suitable autocorrelation structures.
+$$
+LogRatio_{st} = \beta_0 + \beta_{int}\times INT_{st} + \beta_{int:time}\times INT_{st} \times Time_s + \beta_{dow} \times  DOW_{st} + b_{s}\times SITE_t + \epsilon_{st} 
+$$
 
-For the investigation of site-specific effects, random effects or fixed effects models can be used. A random effects model would be suitable if we assume that the sites are a random sample from a larger population, with the model taking the form:
+where model components are defined based on the Table 1. Note that $s$ and $t$ indices represent the time and site.
 
-$$Y_{it} = \beta_0 + \beta_1 T_t + u_i + \sum_{k=1}^{K} (\beta_{2k} I_{kt} + \beta_{3k} T_{kt} I_{kt}) + \epsilon_{it} $$
 
-Where $u_i$ is the random effect for site $i$ and $\epsilon_{it}$ is the within-site error term.
+```{r table 1, echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
 
-By contrast, a fixed effects model would treat each site as a unique entity and estimate site-specific intercepts:
+# Define the data frame for the table content
+variable_descriptions <- data.frame(
+  Term = c("$LogRatio_{st}$", "$Time_s$", "$Site_t$", "$INT_{st}$", "$DOW_{st}$", 
+           "$\\beta_0$", "$\\beta_{int}$", "$\\beta_{int:time}$", "$\\beta_{dow}$", 
+           "$b_{s}$", "$\\epsilon_{st}$"),
+  Description = c("Log ratio of zero-calorie to sugary beverage sales", 
+                  "Days since the start of the intervention at site s", 
+                  "Indicator function of site at time t", 
+                  "Indicator function of intervention type at time t and site s", 
+                  "Indicator function of day of week at time t and site s",
+                  "Intercept, representing the baseline log ratio", 
+                  "Coefficients of fixed effect of the intervention", 
+                  "Coefficients of interaction effect between interventions and time", 
+                  "Coefficient of fixed effect of the day of the week", 
+                  "Random effect for site s", 
+                  "Error term for the model at time t and site s")
+)
 
-$$Y_{it} = \beta_{0i} + \beta_1 T_t + \sum_{k=1}^{K} (\beta_{2k} I_{kt} + \beta_{3k} T_{kt} I_{kt}) + \epsilon_{it} $$
+# Use kable to create the table for PDF output
+kable(variable_descriptions,  caption = "Variable Description",
+      format = "latex", booktabs = TRUE,  escape = FALSE) %>%
+  kableExtra::kable_styling(latex_options = c("striped"))
 
-With $\beta_{0i}$ being the intercept for site $i$, allowing for different baseline sales levels at each site.
 
-The interaction terms $\beta_{3k} T_{kt} I_{kt}$ are critical for evaluating the sustained impact of interventions over time. If these coefficients are significantly different from zero, it suggests that the interventions had an effect beyond an immediate jump or drop in sales, altering the underlying trend of beverage sales.
+```
 
-To evaluate the combined effect of interventions, interaction terms between interventions can be included:
 
-$$Y_{it} = \beta_0 + \beta_1 T_t + u_i + \sum_{k=1}^{K} \beta_{2k} I_{kt} + \sum_{k=1}^{K} \beta_{3k} T_{kt} I_{kt} + \sum_{k<l} \beta_{4kl} I_{kt} I_{lt} + \epsilon_{it} $$
+This formulation allows for a nuanced analysis that captures the dynamic effects of interventions over time, adjusted for site-specific variations and weekly sales patterns. By employing this ITSA within an LMM framework, the model adeptly handles the hierarchical data structure and accounts for both fixed and random effects.
 
-Here, $\beta_{4kl}$ captures the combined effect of interventions $k$ and $l$ when both are in effect.
+## Implementation
 
-Lastly, the model can be augmented with covariates to control for other factors that may influence sales, such as seasonal effects or marketing campaigns. These covariates can be time-varying and should be included in the model if they are thought to confound the relationship between the interventions and sales.
+In our study, we opted for the `nlme` package in R for its comprehensive support in fitting Linear Mixed Models (LMMs), which allows for the inclusion of both fixed and random effects, essential for the analysis of complex data structures like ours. The `lme` function from this package was specifically chosen due to its flexibility in specifying a wide range of variance and correlation structures, critical for accurately modeling the intricate dynamics of our data. By preprocessing the data to omit missing values, we ensure the robustness of our model against potential biases that missing data could introduce. The decision to condense the day of the week into two categories, 'Weekday' and 'Weekend', and to simplify the intervention levels by grouping non-intervention periods under a single category 'noint', was driven by the desire to streamline the analysis and enhance interpretability without sacrificing the granularity necessary for meaningful insights. 
+
+
+
+```{r Model, message=FALSE, warning=FALSE, include=TRUE, fig.pos="H"}
+library(nlme)
+clean_data <- na.omit(beverage_sales)
+# Recode DofW to two levels: Weekday and Weekend
+clean_data$DofW <- factor(ifelse(clean_data$DofW %in% c(1, 2, 3, 4), 
+                                 'Weekday', 
+                                 'Weekend'))
+# Recode Interventions to mark all no interventiopn periods as "noint"
+levels(clean_data$Intervention)[levels(clean_data$Intervention) %in% 
+                                  c("preint", "follow", "wash", "wash2")] <- "noint"
+
+# Adding a variance structure to the model
+model <- lme(LogRatio ~ Intervention + Intervention:Count + DofW ,
+             data        = clean_data,
+             random      = ~ 1 | Site,
+             weights     = varPower(form = ~ I(1/ZeroCal) + Sugary), 
+             correlation = corRatio(form = ~ Count | Site),
+             method      = "ML")
+
+# summary(model)
+```
+
+The choice of the logarithm of the ratio of zero-calorie to sugary beverage sales as the response variable was motivated by its ability to symmetrically quantify shifts in consumer preferences, providing a balanced measure that reflects relative changes in sales rather than absolute values, which is particularly insightful for evaluating the effectiveness of health interventions. The incorporation of a power variance function with the sales data as covariates addresses the potential issue of heteroscedasticity, ensuring that the model adequately reflects the variability in the data. The rational quadratic spatial correlation structure, specified through the `corRatio` function, was selected for its suitability in capturing the decay of correlation over time within each site, a feature that aligns well with the temporal nature of our data. This correlation structure, coupled with the defined variance model, encapsulates our understanding of the data's underlying patterns, ensuring that the model's assumptions about residual variance and within-site correlations are well-aligned with the observed behavior of our dataset, thus facilitating a more nuanced and accurate interpretation of the impact of health-focused interventions on beverage selection.
+
+## Results and Diagnostics
+
+The coefficient of the model are presented in Table 2. Moreover the residual plot in following figure shows pattern-free behaviour which indicate an appropriate variance structure. 
+
+```{r coefs, echo=FALSE, message=FALSE, warning=FALSE}
+library(broom.mixed)
+library(knitr)
+# Use broom.mixed to tidy the model and retain only significant coefficients
+tidy_model <- tidy(model) %>%
+  filter(p.value < 0.05) %>%
+  select(term, estimate, p.value)
+
+tidy_model$estimate <- round(tidy_model$estimate,3)
+tidy_model$p.value <- round(tidy_model$p.value,3)
+
+kable(tidy_model, caption = "Significant Model Coefficients and Their P-Values",
+            format = "latex", booktabs = TRUE,  escape = FALSE) %>%
+  kableExtra::kable_styling(latex_options = c("striped", ""))
+```
+
+
+
+```{r diagnostics, echo=FALSE, out.width='75%', fig.width=9, fig.height=6, fig.show='hold',fig.align='center', fig.cap="The residual plot provides insight into the fitness of the model, reveal potential outliers, and help validate assumptions. Here, the residual plot is pattern-free and scattered roughly symmetrically around zero. The heteroscedasticity seen in residual plot before applying the appropriate variance structure is not apparent anymore."}
+plot(model)
+```
+
+
+
 
 \pagebreak 
+
 # Contributions
 
 
