@@ -73,19 +73,16 @@ beverage_sales$Site <- as.factor(beverage_sales$Site)
 # Exploratory Data Analysis
 
 
-Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns, relationships, and outliers in the data. To explore the data of the study, box plots and time series plots are highly important and included in the main report. These visualizations provide insight into the distribution of sugary and zero-calorie beverage sales, as well as their temporal trends. Additionally, Appendix A provides supplementary visualizations encompassing missing values, histograms and a correlation plot. Collectively, these exploratory techniques build a foundation and justification to the development of the formal analysis, aiming to explore the impact product labeling on beverage sales. 
-
+Exploratory Data Analysis (EDA) is an important first step in data analysis in uncovering underlying patterns, relationships, and outliers in the data. To explore the data of the study, time series plots are included in the main report. Additionally, Appendix A provides supplementary visualizations encompassing missing values, histograms. These visualizations provide insight into the distribution of sugary and zero-calorie beverage sales, as well as their temporal trends.
 
 Figure \@ref(fig:sales-time-series-plot) represents the sales time series of zero-calorie and sugary beverages across different sites, colored by the Intervention. Both sugary drink and zero calorie drink sales trends are different across different interventions, indicating that different interventions do have different impacts on sales. The sales trends are different across sites, and the effect of intervention appears to be different across sites as well. 
 
-```{r sales-time-series-plot, fig.cap="Time Series plot illustrating the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=4, fig.width=6, fig.pos="H"}
+```{r sales-time-series-plot, fig.cap="Time Series plot illustrating the daily sales volumes of zero-calorie (in green) and sugary (in blue) beverages across three hospital sites over 30 weeks. The dashed and their corresponding shorthand labels mark the interventions to allow for visual assessment of their impact on beverage sales trends.", echo=FALSE, fig.height=3.75, fig.width=6, fig.pos="H"}
 plot_sales_time_series(beverage_sales)
 
 ```
 
-A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. Figure \@ref(fig:Boxplots) shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range, and the whiskers extending to the furthest points that are not considered outliers.
-
-Note that bimodality of sales exists in the data. Specifically, there are considerably more beverage sales on weekdays than on the weekend. To better represent the data, the weekend sales are excluded from this plot. Boxplots for all and weekend sales respectively are present in the appendix (Figure \@ref(fig:appendix-boxplots)). The interventions, labelled on the x-axis, include baseline, discount & messaging, washout period, discount only, follow up, calorie content poster,  exercise required to burn the calorie content poster, and combination of the two poster types. It is observable that the maximum and median number of sales during the week varies with intervention. 
+A boxplot is a method for graphically demonstrating the property of statistical distribution of numerical data. Figure \@ref(fig:appendix-boxplots) in the appendix shows the distribution of sugary and zero-calorie beverage sales across different intervention strategies. Each boxplot captures the sales data variability with the central line denoting the median, the edges of the box indicating the interquartile range, and the whiskers extending to the furthest points that are not considered outliers. Note that bimodality of sales exists in the data. Specifically, there are considerably more beverage sales on weekdays than on the weekend. To better represent the data, the weekday and weekend sales are separated into two plots. It is observable that the maximum and median number of sales during the week varies with intervention. 
 
 ```{r Boxplots, fig.cap="Boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Note that the plot only illustrates weekday sales.", echo=FALSE, fig.height=4, fig.width=8, fig.pos="p", fig.label='fig:boxplot', echo=FALSE,  message=FALSE, warning=FALSE}
 
@@ -93,7 +90,7 @@ Note that bimodality of sales exists in the data. Specifically, there are consid
 #boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "all")
 
 ## Week days
-boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekdays")
+# boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekdays")
 
 ## Weekends
 #boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekend")
@@ -102,7 +99,7 @@ boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), categor
 
 ## Missing Values and Data Imbalance
 
-The dataset contains some missing values, as obseved in Figure \@ref(fig:missing-balance). It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. There are 9 days of unrecorded zero-calorie and sugary beverage sales, 7 of which represent the last week of the study at site B. Failing to address missing data may lead to a reduction of statistical power and biased results. This report removed the last week of study at site B, treating it as not recorded entirely. The rest of missing values are considered Missing At Random (MAR) due to the small amount.
+The dataset contains some missing values, as obseved in Figure \@ref(fig:missing-balance). It is important to identify what kind of missing data exists within a dataset to better understand how to handle missingness during formal analysis. There are 9 days of unrecorded zero-calorie and sugary beverage sales, 7 of which represent the last week of the study at site B. This report removed the last week of study at site B, treating it as not recorded entirely. The rest of missing values are considered Missing At Random (MAR) due to the small amount.
 
 It is also important to note whether of not the dataset reflects a roughly equal number of observations between the sites and interventions respectively. If one class in either the site or interventions are represented disproportionately, then models used may become biased towards the most frequently seen class. Balance between sites appears to be reasonable, where some imbalance is present between interventions. Namely, some of the no-intervention levels are imbalanced when compared to the other interventions, this does not have a significant impact on the analysis of the interventions.
 
@@ -142,6 +139,10 @@ summary(model)
 
 In conclusion, our analysis demonstrates the value of integrating ITSA with LMM for evaluating public health interventions in shifting consumer behaviour. While our findings highlight the potential of certain interventions to positively influence consumer behaviour, they also point to the importance of considering temporal patterns in the design and implementation of health promotion strategies. The refined analysis, which incorporates interactions between interventions and time, reveal the progressive influence of exercise-related messaging of the calorie content on shifting consumer preferences towards zero-calorie beverages. Furthermore, the discounting strategies show a significant impact after commencing the intervention but fail to sustain the impact. Variations in preference between weekdays and weekends further highlighted the importance of timing and pointing to different target populations. 
 
+\pagebreak
+
+# (APPENDIX) Appendix {-} 
+
 # References
 
 
@@ -151,15 +152,29 @@ UCLA Statistical Consulting Group. (n.d.). Introduction to Linear Mixed Models. 
    
 University of Virginia Library. (n.d.). Getting Started with Generalized Estimating Equations. Retrieved March 1, 2024, from https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations 
 
-
-\pagebreak
-
-# (APPENDIX) Appendix {-} 
-
 # Appendix A
    
 
 The following sub section contains additional figures and their analysis results.
+
+## Boxplots
+
+This boxplot shows the sales distribution data from weekdays and weekends across sites. (Figure \@ref(fig:appendix-boxplots)).
+
+```{r, echo=FALSE, fig.show='hide'}
+
+p1 <- boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekdays")
+
+## Weekends
+p2 <- boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekend")
+```
+
+
+```{r appendix-boxplots, fig.cap="The boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Each intervention is colour-coded and shows the range of sales data with the central line representing the median sales. Note that the plots only illustrates weekday sales.", echo=FALSE, fig.height=7, fig.width=8, fig.pos="p", fig.label='fig:appendix-boxplot', message=FALSE, warning=FALSE}
+
+grid.arrange(p1, p2)
+```
+
 
 ## Histogram Plots
 
@@ -181,33 +196,9 @@ plot_beverage_sales_comparison(beverage_sales, "ZeroCal", "Sugary", "Site")
 
 
 
-## Boxplots
-
-This boxplot shows the sales distribution data from weekends across sites. (Figure \@ref(fig:appendix-boxplots)).
-
-```{r, echo=FALSE, fig.show='hide'}
-## All days
-# p1 <- boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), 
-#                            category = "Intervention", days = "all", legend = FALSE)
-
-## Weekends
-# p2 <- boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekend")
-```
-
-
-```{r appendix-boxplots, fig.cap="The boxplots display the sales distribution of Sugary and Zero-Calorie beverages across various interventions. Each intervention is colour-coded and shows the range of sales data with the central line representing the median sales. Note that the plots only illustrates weekday sales.", echo=FALSE, fig.height=4, fig.width=8, fig.pos="p", fig.label='fig:appendix-boxplot', message=FALSE, warning=FALSE}
-
-# grid.arrange(p1, p2)
-boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), category = "Intervention", days = "weekend")
-```
-
-## Correlation Plot 
-
-This correlation plot (Figure \@ref(fig:appendix-correlation)) investigates the correlation structure between numeric variables within the dataset. In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables.
-
 
 ```{r correlation, fig.cap= "Correlation plot displaying the correlation between numeric variables", fig.pos="H", fig.label='fig:appendix-correlation',echo=FALSE, message=FALSE, warning=FALSE, fig.width=3}
-plot_corr_plot(beverage_sales)
+# plot_corr_plot(beverage_sales)
 ```
 
 ## Missing Values
@@ -274,10 +265,6 @@ Here, $\beta_{4kl}$ captures the combined effect of interventions $k$ and $l$ wh
 
 Lastly, the model can be augmented with covariates to control for other factors that may influence sales, such as seasonal effects or marketing campaigns. These covariates can be time-varying and should be included in the model if they are thought to confound the relationship between the interventions and sales.
 
-
-
-
-\pagebreak
 
 # Contributions
 
