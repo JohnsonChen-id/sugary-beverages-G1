@@ -44,11 +44,11 @@ Concerns around sugar consumption and its health implications have prompted many
 
 # Data Description and Summaries
 
-The study adopts an interrupted time-series multi-site quasi-experimental design to assess the effectiveness of the five interventions on the purchase patterns of bottled sugary and zero-calorie beverages. The data are recorded from cafeterias and convenience shops at three hospital sites, denoted by A, B, and C. Sugary beverages include regular soft drinks and iced teas, sweetened with natural sugars like sucrose and corn syrup, and zero-calorie beverages include diet soft drinks and teas, and water. Other beverages, such as juice and milk, are excluded from the study due to challenges in identifying their sugar contents. Nevertheless, the total sales information is kept in the study to represent the overall patterns of beverage sales irrespective of their sugar content.
+The study adopts an interrupted time-series multi-site quasi-experimental design to assess the effectiveness of the five interventions on the purchase patterns of bottled sugary and zero-calorie beverages. The data are recorded from cafeterias and convenience shops at three hospital sites, denoted by A, B, and C.
 
 The experiment, starting on October 27, 2009 and ending 32 weeks later, measure daily sales of bottled sugary and zero-calorie beverages. The study period included a baseline data collection phase, intervention phases to elicit behaviour change, and washout periods to assess the persistence of intervention effects. The dataset contains 631 sales counts for variables zero-calorie, sugary, and all drinks, sale location, day of the week, and the type of intervention applied. The price interventions consist of two periods of 10% discount on zero-calorie beverages, with one phase providing additional explanatory messaging about the discount. The calorie messaging interventions provided information on the caloric content of sugary drinks, the physical activity required to burn off these calories, and a combination of both strategies.
 
-The day of week, site and intervention covariates are each considered categorical data types. Other observations are classified under numerical data types as they measure sales counts. Missing data is observed over some control periods of the study.  
+The day of week, site and intervention covariates are each considered categorical data types. Other observations are classified under numerical data types as they measure sales counts. The total sales information is kept in the study to represent the overall patterns of beverage sales irrespective of their sugar content. Missing data is observed over some control periods of the study.  
 
 
 ```{r data, include=FALSE}
@@ -150,39 +150,6 @@ Columbia University Mailman School of Public Health. (n.d.). Repeated Measures A
 UCLA Statistical Consulting Group. (n.d.). Introduction to Linear Mixed Models. Retrieved March 1, 2024, from https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/ 
    
 University of Virginia Library. (n.d.). Getting Started with Generalized Estimating Equations. Retrieved March 1, 2024, from https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations 
-   
-## Other Resources:
-
-- [\underline{\textcolor{blue}{Interrupted Time Series Analysis}}](https://rpubs.com/mbounthavong/MEPS_tutorial_6_itsa)
-- [\underline{\textcolor{blue}{Getting Started with Generalized Estimating Equations}}](https://library.virginia.edu/data/articles/getting-started-with-generalized-estimating-equations#:~:text=Generalized%20estimating%20equations%2C%20or%20GEE,(i.e.%2C%20model%20coefficients).)
-- Linear Mixed Effect Model Tutorials:
-  + [\underline{\textcolor{blue}{LMEM tutorial (illinois.edu)}}](https://jontalle.web.engr.illinois.edu/MISC/lme4/bw_LME_tutorial.pdf)
-  + [\underline{\textcolor{blue}{Chapter 17: Mixed Effects Modeling (uic.edu)}}](https://ademos.people.uic.edu/Chapter17.html)
-  + [\underline{\textcolor{blue}{Introduction to Linear Mixed Models (ucla.edu)}}](https://stats.idre.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/)
-  + [\underline{\textcolor{blue}{Mixed Effects Models (bodywinter.com)}}](https://bodo-winter.net/tutorial/bw_LME_tutorial1.pdf)
-  + [\underline{\textcolor{blue}{Mixed Effects, lme4 Tutorial}}](https://ourcodingclub.github.io/tutorials/mixed-models/)
-  + [\underline{\textcolor{blue}{Fitting Linear Mixed-Effects Models Using lme4}}](https://cran.r-project.org/web/packages/lme4/vignettes/lmer.pdf)
-
-- ASDA Teaching Recordings:
-  + [\underline{\textcolor{blue}{Exploratory Data Analysis}}](https://community.grad.ubc.ca/gps/event/22318)
-  + [\underline{\textcolor{blue}{Study Design and Data Collection Essentials}}](https://community.grad.ubc.ca/gps/event/22327)
-  + [\underline{\textcolor{blue}{Mixed Effects Models}}](https://community.grad.ubc.ca/gps/event/22330)
-- Multiple Testing Correction Techniques:
-  + [\underline{\textcolor{blue}{Multiple Testing Correction Techniques}}](https://www.stat.berkeley.edu/~mgoldman/Section0402.pdf)
-  + [\underline{\textcolor{blue}{An Article on the Multiple Testing Problem}}](https://egap.org/resource/10-things-to-know-about-multiple-comparisons/)
-- Model Assumptions and Interpretations:
-  + [\underline{\textcolor{blue}{Linear Mixed Effects Model Assumptions}}](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13434)
-  + [\underline{\textcolor{blue}{DHARMa: a Residual Diagnostics Tool for LMEM}}](https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html)
-  + [\underline{\textcolor{blue}{Interactions Explained}}](www.medicine.mcgill.ca/epidemiology/Joseph/courses/EPIB-621/interaction.pdf) 
-  + [\underline{\textcolor{blue}{Understanding Interactions between Categorical and Continuous Variables}}](https://www.theanalysisfactor.com/interactions-categorical-and-continuous-variables/)
-  + [\underline{\textcolor{blue}{Interaction Plots}}](https://ademos.people.uic.edu/Chapter13.html)
-  + [\underline{\textcolor{blue}{Interaction Plots}}](https://rpubs.com/tf_peterson/interactionplotDemo)
-  + [\underline{\textcolor{blue}{Testing for Interaction Significance}}](https://mcfromnz.wordpress.com/2011/03/02/anova-type-iiiiii-ss-explained/)
-  + [\underline{\textcolor{blue}{Package `emmeans` for Post-hoc Analysis and Pairwise Comparisons of the Interaction Effect}}](https://cran.r-project.org/web/packages/emmeans/vignettes/interactions.html)
-  + [\underline{\textcolor{blue}{Interaction Analysis in R}}](https://stats.oarc.ucla.edu/r/seminars/interactions-r/)
-  + [\underline{\textcolor{blue}{Comparisons and Contrasts in emmeans}}](https://cran.r-project.org/web/packages/emmeans/vignettes/comparisons.html)  
-
-
 
 
 \pagebreak
@@ -239,7 +206,7 @@ boxplots_by_category(beverage_sales, responses = c("ZeroCal", "Sugary"), categor
 This correlation plot (Figure \@ref(fig:appendix-correlation)) investigates the correlation structure between numeric variables within the dataset. In this plot, the size, color of the circles and number represent the strength of the correlation coefficients between the variables.
 
 
-```{r correlation, fig.cap= "Correlation plot displaying the correlation between numeric variables", fig.pos="p", fig.label='fig:appendix-correlation',echo=FALSE, message=FALSE, warning=FALSE, fig.width=3}
+```{r correlation, fig.cap= "Correlation plot displaying the correlation between numeric variables", fig.pos="H", fig.label='fig:appendix-correlation',echo=FALSE, message=FALSE, warning=FALSE, fig.width=3}
 plot_corr_plot(beverage_sales)
 ```
 
