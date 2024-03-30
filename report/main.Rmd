@@ -277,4 +277,3 @@ Lastly, the model can be augmented with covariates to control for other factors 
 \textbf{Sarah Masri (97415681):} \quad GEE, Missing Values, conclusion, formatting, edits after peer review, proofread.\\ \\ \\
 ```
 
-

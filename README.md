@@ -41,4 +41,3 @@ and figures.
 * Title and authors: Choose a reasonable title. Don't call it "Sugary Beverages"
 or "Homework 2". 
 * You must open your PR by midnight on the due date.
-
