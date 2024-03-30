@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.2.25)  28 MAR 2024 21:32
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.2.25)  29 MAR 2024 19:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -969,95 +969,81 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 ] [2]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
 (Font)              scaled to size 12.0pt on input line 120.
-File: main_files/figure-latex/Boxplots-1.pdf Graphic file (type pdf)
-<use main_files/figure-latex/Boxplots-1.pdf>
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 129.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 9.0pt on input line 129.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
-(Font)              scaled to size 9.0pt on input line 129.
-
-LaTeX Warning: Reference `fig:correlation' on page 3 undefined on input line 13
-5.
-
-[3]
 File: main_files/figure-latex/sales-time-series-plot-1.pdf Graphic file (type p
 df)
 <use main_files/figure-latex/sales-time-series-plot-1.pdf>
-[4] [5] [6] [7]
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 127.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
+(Font)              scaled to size 9.0pt on input line 127.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/it' will be
+(Font)              scaled to size 9.0pt on input line 127.
+[3]
+File: main_files/figure-latex/Boxplots-1.pdf Graphic file (type pdf)
+<use main_files/figure-latex/Boxplots-1.pdf>
+[4] [5] [6]
 File: main_files/figure-latex/Plot-Histograms-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/Plot-Histograms-1.pdf>
+[7]
 File: main_files/figure-latex/Sales-Scatterplot-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/Sales-Scatterplot-1.pdf>
 File: main_files/figure-latex/appendix-boxplots-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/appendix-boxplots-1.pdf>
-[8]
+
+LaTeX Warning: Reference `fig:correlation' on page 8 undefined on input line 29
+7.
+
 File: main_files/figure-latex/correlation-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/correlation-1.pdf>
 File: main_files/figure-latex/missing-balance-1.pdf Graphic file (type pdf)
 <use main_files/figure-latex/missing-balance-1.pdf>
-[9] [10] [11]
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(1)/b/n' will be
-(Font)              scaled to size 9.79675pt on input line 424.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(1)/b/n' will be
-(Font)              scaled to size 6.85773pt on input line 424.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(1)/b/n' will be
-(Font)              scaled to size 4.89838pt on input line 424.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 429.
-LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 429.
-[12]
-Missing character: There is no 𝛽 (U+1D6FD) in font Times New Roman/OT:script=la
-tn;language=dflt;mapping=tex-text;!
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+[8] [9] [10] [11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 370--373
 
  []
 
-[14] (./main.aux)
+[13] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 19308 strings out of 476919
- 347513 string characters out of 5821840
- 840901 words of memory out of 5000000
- 39011 multiletter control sequences out of 15000+600000
- 410001 words of font info for 95 fonts, out of 8000000 for 9000
+ 19274 strings out of 476919
+ 346665 string characters out of 5821840
+ 840594 words of memory out of 5000000
+ 38985 multiletter control sequences out of 15000+600000
+ 409953 words of font info for 89 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 98i,6n,125p,1498b,420s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 98i,6n,125p,1254b,420s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (14 pages).
+Output written on main.pdf (13 pages).
